@@ -6,6 +6,7 @@ from uuid import uuid4
 from django.db import models
 from django.core.validators import MaxValueValidator
 from django.utils.text import slugify
+from ckeditor.fields import RichTextField
 
 
 class UserDetails(models.Model):
@@ -51,40 +52,34 @@ class PostTags(models.Model):
 
 class Post(models.Model):
     """
-    this model holds data associated with a specific
-    post
-    Note: Many to many relationship exists between
-    tag and post
+    This model holds data associated with a specific post.
+    Note: Many-to-many relationship exists between tag and post.
     """
 
     id = models.UUIDField(primary_key=True, default=uuid4, editable=False)
     tags = models.ManyToManyField(PostTags, related_name="posts")
     user = models.ForeignKey(User, on_delete=models.CASCADE)
-    title = models.CharField(max_length=255, unique=True, null=False, blank=True)
+    title = models.CharField(max_length=255, unique=True)
     slug = models.SlugField(max_length=255, unique=True, null=False, blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
-    content = models.TextField(unique=True, null=True, blank=True)
-    like = models.BooleanField(default=False, unique=True, null=True, blank=True)
+    post_image = models.ImageField(upload_to='post_images/', null=True, blank=True)
+    content = RichTextField()
+    like = models.BooleanField(default=False, null=True, blank=True)
     shared = models.BooleanField(default=False)
 
     def get_post_tags(self):
-        """gets the posts tags
-
-        Returns:
-            _tuple_: a tuple containing post tags
-        """
-        return "\n".join([i.tags for i in self.tags.name()])
+        """Get the posts tags as a list."""
+        return [tag.name for tag in self.tags.all()]
 
     def save(self, *args, **kwargs):
-        """convert a a title to slug
-        """
+        """Convert a title to slug when saving."""
         if not self.slug:
             self.slug = slugify(self.title)
         super().save(*args, **kwargs)
 
     def __str__(self):
-        return str(self.title)
+        return self.title
 
 
 class Comment(models.Model):

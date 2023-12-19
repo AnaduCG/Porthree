@@ -31,68 +31,66 @@
 
         <!-- Sidebar hidden for now to be visible to only login in admins -->
         {%if user.is_authenticated%}
-        <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+        <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion pr-5" id="accordionSidebar">
+            <div class="position-fixed">
+                <!-- Sidebar - Brand -->
 
-            <!-- Sidebar - Brand -->
 
+                <!-- Divider -->
+                <hr class="sidebar-divider my-0">
 
-            <!-- Divider -->
-            <hr class="sidebar-divider my-0">
+                <!-- Nav Item - Dashboard -->
+                <li class="nav-item active">
+                    <a class="nav-link" href="{%url 'user-details' %}">
+                        <i class="fas fa-fw fa-tachometer-alt"></i>
+                        <span>Dashboard</span></a>
+                </li>
 
-            <!-- Nav Item - Dashboard -->
-            <li class="nav-item active">
-                <a class="nav-link" href="{%url 'user-details' %}">
-                    <i class="fas fa-fw fa-tachometer-alt"></i>
-                    <span>Dashboard</span></a>
-            </li>
+                <!-- Divider -->
+                <hr class="sidebar-divider">
 
-            <!-- Divider -->
-            <hr class="sidebar-divider">
-
-            <!-- Heading -->
-            <div class="sidebar-heading">
-                Interface
-            </div>
-
-            <!-- Nav Item - Pages Collapse Menu -->
-            <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
-                    aria-expanded="true" aria-controls="collapseTwo">
-                    <i class="fas fa-fw fa-cog"></i>
-                    <span>User</span>
-                </a>
-                <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header">User information:</h6>
-                        <a class="collapse-item" href="{% url 'user-details'%}">user details </a>
-                        <a class="collapse-item" href="{% url 'create-skills' %}">user Skills </a>
-                    </div>
+                <!-- Heading -->
+                <div class="sidebar-heading">
+                    User tools
                 </div>
-            </li>
 
-            <!-- Nav Item - Utilities Collapse Menu -->
-            <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities"
-                    aria-expanded="true" aria-controls="collapseUtilities">
-                    <i class="fas fa-fw fa-wrench"></i>
-                    <span>Portfolio</span>
-                </a>
-                <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities"
-                    data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header">Portfolio Information:</h6>
-                        <a class="collapse-item" href="{% url 'create-project' %}">user Projects </a>
-                        <a class="collapse-item" href="{% url 'create-project' %}">user Projects </a>
-                    </div>
+                <!-- Nav Item - Pages Collapse Menu -->
+                <li class="nav-item">
+                    <a class="nav-link active bg-light text-primary border font-weight-bold" id="v-pills-home-tab"
+                        role="tab" aria-controls="v-pills-home" aria-selected="true" href="{% url 'user-details'%}"
+                        style="width: 85%;">
+                        <span>My Details</span>
+                    </a>
+                    <a class="nav-link active bg-light text-primary border font-weight-bold" id="v-pills-home-tab"
+                        role="tab" aria-controls="v-pills-home" aria-selected="true" href="{% url 'create-skills'%}"
+                        style="width: 85%;">
+                        <span>My Skills</span>
+                    </a>
+                </li>
+                <div class="sidebar-heading">
+                    Porthree
                 </div>
-            </li>
+                <!-- Nav Item - Utilities Collapse Menu -->
+                <li class="nav-item">
+                    <a class="nav-link active bg-light text-primary border font-weight-bold" id="v-pills-home-tab"
+                        role="tab" aria-controls="v-pills-home" aria-selected="true" href="{% url 'create-project' %}"
+                        style="width: 85%;">
+                        <span>My Projects</span>
+                    </a>
+                    <a class="nav-link active bg-light text-primary border font-weight-bold" id="v-pills-home-tab"
+                        role="tab" aria-controls="v-pills-home" aria-selected="true" href="{% url 'create-post' %}"
+                        style="width: 85%;">
+                        <span>My Posts</span>
+                    </a>
+                </li>
 
-            <!-- Divider -->
-            <hr class="sidebar-divider d-none d-md-block">
+                <!-- Divider -->
+                <hr class="sidebar-divider d-none d-md-block">
 
-            <!-- Sidebar Toggler (Sidebar) -->
-            <div class="text-center d-none d-md-inline">
-                <button class="rounded-circle border-0" id="sidebarToggle"></button>
+                <!-- Sidebar Toggler (Sidebar) -->
+                <div class="text-center d-none d-md-inline">
+                    <button class="rounded-circle border-0" id="sidebarToggle"></button>
+                </div>
             </div>
         </ul>
         {%endif%}
@@ -105,243 +103,124 @@
             <div id="content">
 
                 <!-- Topbar -->
-                <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow fixed d-flex">
+                <nav class="navbar navbar-expand-lg navbar-light bg-white topbar shadow fixed-top"
+                    style=" z-index: 99;">
                     <!-- navbar logo -->
-                    <a class="sidebar-brand d-flex align-items-center justify-content-center w-25"
-                        href="{%url 'index' %}">
+                    <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{%url 'index' %}">
+
                         <!-- <div class="sidebar-brand-icon rotate-n-15">
                             <i class="fas fa-laugh-wink"></i>
                         </div> -->
-                        <div class="sidebar-brand-text mx-3 font-weight-bold h2">Porthree<sup>3</sup></div>
+                        <div class="sidebar-brand-text font-weight-bold h4" style="width: 120px">Porthree<sup>3</sup>
+                        </div>
                     </a>
 
                     <!-- Sidebar Toggle (Topbar) -->
-                    <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
-                        <i class="fa fa-bars"></i>
+                    <button class="navbar-toggler" type="button" data-toggle="collapse"
+                        data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
                     </button>
+                    <div class="collapse navbar-collapse bg-light" id="navbarSupportedContent">
+                        <div class="d-flex flex-wrap w-100 justify-content-between">
 
-                    <!-- Topbar nav -->
-                    {%block nav%}
-                    <div class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
-                        <ul class="navbar-nav mr-auto">
-                            <li class="nav-item">
-                                <a class="nav-link font-weight-bold text-dark" href="{%url 'portfolio' user %}">Home</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link font-weight-bold text-dark" href="#">About</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link font-weight-bold text-dark" href="#">Portfolios</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link font-weight-bold text-dark" href="#">Contact</a>
-                            </li>
-                            <li class="nav-item">
-                                <a type="button" class="nav-link font-weight-bold text-dark" data-toggle="modal"
-                                    data-target="#exampleModalLong">
-                                    resume
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
-
-                    {%endblock%}
-
-                    <!-- Topbar Navbar -->
-                    {%if user.is_authenticated%}
-
-                    <ul class="navbar-nav ml-auto">
-
-                        <!-- Nav Item - Search Dropdown (Visible Only XS) -->
-                        <li class="nav-item dropdown no-arrow d-sm-none">
-                            <a class="nav-link dropdown-toggle" href="#" id="searchDropdown" role="button"
-                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <i class="fas fa-search fa-fw"></i>
-                            </a>
-                            <!-- Dropdown - Messages -->
-                            <div class="dropdown-menu dropdown-menu-right p-3 shadow animated--grow-in"
-                                aria-labelledby="searchDropdown">
-                                <form class="form-inline mr-auto w-100 navbar-search">
-                                    <div class="input-group">
-                                        <input type="text" class="form-control bg-light border-0 small"
-                                            placeholder="Search for..." aria-label="Search"
-                                            aria-describedby="basic-addon2">
-                                        <div class="input-group-append">
-                                            <button class="btn btn-primary" type="button">
-                                                <i class="fas fa-search fa-sm"></i>
-                                            </button>
-                                        </div>
-                                    </div>
-                                </form>
+                            <!-- Topbar nav -->
+                            {%block nav%}
+                            <div class="d-sm-inline-block form-inline navbar-search m-auto" style="width: fit-content;">
+                                <ul class="navbar-nav mr-auto">
+                                    <li class="nav-item">
+                                        <a class="nav-link font-weight-bold text-dark"
+                                            href="{%url 'portfolio' user %}">Home</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link font-weight-bold text-dark" href="#">About</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link font-weight-bold text-dark" href="#">Projects</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link font-weight-bold text-dark" href="#">Contact</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a type="button" class="nav-link font-weight-bold text-dark" data-toggle="modal"
+                                            data-target="#exampleModalLong">
+                                            CV
+                                        </a>
+                                    </li>
+                                </ul>
                             </div>
-                        </li>
 
-                        <!-- Nav Item - Alerts -->
-                        <li class="nav-item dropdown no-arrow mx-1 invisible">
-                            <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button"
-                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <i class="fas fa-bell fa-fw"></i>
-                                <!-- Counter - Alerts -->
-                                <span class="badge badge-danger badge-counter">3+</span>
-                            </a>
-                            <!-- Dropdown - Alerts -->
-                            <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in"
-                                aria-labelledby="alertsDropdown">
-                                <h6 class="dropdown-header">
-                                    Alerts Center
-                                </h6>
-                                <a class="dropdown-item d-flex align-items-center" href="#">
-                                    <div class="mr-3">
-                                        <div class="icon-circle bg-primary">
-                                            <i class="fas fa-file-alt text-white"></i>
+                            {%endblock%}
+                            <div class="d-flex flex-wrap justify-content-between align-self-sm-start my-lg-auto"
+                                style="gap: 10px;">
+
+                                <!-- Topbar Navbar -->
+                                {%if user.is_authenticated%}
+
+                                <ul class="navbar-nav m-auto">
+                                    <!-- Dropdown - Messages -->
+                                    <div class="dropdown-menu dropdown-menu-right p-3 shadow animated--grow-in"
+                                        aria-labelledby="searchDropdown">
+                                        <form class="form-inline mr-auto w-100 navbar-search">
+                                            <div class="input-group">
+                                                <input type="text" class="form-control bg-light border-0 small"
+                                                    placeholder="Search for..." aria-label="Search"
+                                                    aria-describedby="basic-addon2">
+                                                <div class="input-group-append">
+                                                    <button class="btn btn-primary" type="button">
+                                                        <i class="fas fa-search fa-sm"></i>
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                    </li>
+
+                                    <!-- Nav Item - User Information -->
+                                    <li class="nav-item dropdown no-arrow" style="width: 190px;">
+                                        <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
+                                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            <span
+                                                class="mr-2 d-none d-lg-inline text-gray-600 small text-capitalize">{{user.username}}</span>
+                                            {%if user_details.profile_picture%}
+                                            <img class="img-profile rounded-circle float-right"
+                                                src="{{user_details.profile_picture.url}}">
+                                            {%else%}
+                                            <img class="img-profile rounded-circle float-right"
+                                                src="{% static 'MainApp/img/undraw_profile.svg' %}">
+                                            {%endif%}
+                                        </a>
+                                        <!-- Dropdown - User Information -->
+                                        <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
+                                            aria-labelledby="userDropdown">
+                                            <a class="dropdown-item" href="{% url 'portfolio' user %}">
+                                                <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
+                                                My Portfolio
+                                            </a>
+                                            <a class="dropdown-item" href="{% url 'user-details' %}">
+                                                <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
+                                                My details
+                                            </a>
+                                            <a class="dropdown-item" href="#">
+                                                <i class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i>
+                                                Activity Log
+                                            </a>
+                                            <div class="dropdown-divider"></div>
+                                            <a class="dropdown-item" href="#" data-toggle="modal"
+                                                data-target="#logoutModal">
+                                                <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                                                Logout
+                                            </a>
                                         </div>
-                                    </div>
-                                    <div>
-                                        <div class="small text-gray-500">December 12, 2019</div>
-                                        <span class="font-weight-bold">A new monthly report is ready to
-                                            download!</span>
-                                    </div>
-                                </a>
-                                <a class="dropdown-item d-flex align-items-center" href="#">
-                                    <div class="mr-3">
-                                        <div class="icon-circle bg-success">
-                                            <i class="fas fa-donate text-white"></i>
-                                        </div>
-                                    </div>
-                                    <div>
-                                        <div class="small text-gray-500">December 7, 2019</div>
-                                        $290.29 has been deposited into your account!
-                                    </div>
-                                </a>
-                                <a class="dropdown-item d-flex align-items-center" href="#">
-                                    <div class="mr-3">
-                                        <div class="icon-circle bg-warning">
-                                            <i class="fas fa-exclamation-triangle text-white"></i>
-                                        </div>
-                                    </div>
-                                    <div>
-                                        <div class="small text-gray-500">December 2, 2019</div>
-                                        Spending Alert: We've noticed unusually high spending for your account.
-                                    </div>
-                                </a>
-                                <a class="dropdown-item text-center small text-gray-500" href="#">Show All
-                                    Alerts</a>
-                            </div>
-                        </li>
+                                    </li>
 
-                        <!-- Nav Item - Messages -->
-                        <li class="nav-item dropdown no-arrow mx-1 invisible">
-                            <a class="nav-link dropdown-toggle" href="#" id="messagesDropdown" role="button"
-                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <i class="fas fa-envelope fa-fw"></i>
-                                <!-- Counter - Messages -->
-                                <span class="badge badge-danger badge-counter">7</span>
-                            </a>
-                            <!-- Dropdown - Messages -->
-                            <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in"
-                                aria-labelledby="messagesDropdown">
-                                <h6 class="dropdown-header">
-                                    Message Center
-                                </h6>
-                                <a class="dropdown-item d-flex align-items-center" href="#">
-                                    <div class="dropdown-list-image mr-3">
-                                        <img class="rounded-circle"
-                                            src="{% static 'MainApp/img/undraw_profile_1.svg' %}" alt="...">
-                                        <div class="status-indicator bg-success"></div>
-                                    </div>
-                                    <div class="font-weight-bold">
-                                        <div class="text-truncate">Hi there! I am wondering if you can help me
-                                            with a
-                                            problem I've been having.</div>
-                                        <div class="small text-gray-500">Emily Fowler · 58m</div>
-                                    </div>
-                                </a>
-                                <a class="dropdown-item d-flex align-items-center" href="#">
-                                    <div class="dropdown-list-image mr-3">
-                                        <img class="rounded-circle"
-                                            src="{% static 'MainApp/img/undraw_profile_2.svg' %}" alt="...">
-                                        <div class="status-indicator"></div>
-                                    </div>
-                                    <div>
-                                        <div class="text-truncate">I have the photos that you ordered last
-                                            month, how
-                                            would you like them sent to you?</div>
-                                        <div class="small text-gray-500">Jae Chun · 1d</div>
-                                    </div>
-                                </a>
-                                <a class="dropdown-item d-flex align-items-center" href="#">
-                                    <div class="dropdown-list-image mr-3">
-                                        <img class="rounded-circle"
-                                            src="{% static 'MainApp/img/undraw_profile_3.svg' %}" alt="...">
-                                        <div class="status-indicator bg-warning"></div>
-                                    </div>
-                                    <div>
-                                        <div class="text-truncate">Last month's report looks great, I am very
-                                            happy with
-                                            the progress so far, keep up the good work!</div>
-                                        <div class="small text-gray-500">Morgan Alvarez · 2d</div>
-                                    </div>
-                                </a>
-                                <a class="dropdown-item d-flex align-items-center" href="#">
-                                    <div class="dropdown-list-image mr-3">
-                                        <img class="rounded-circle" src="https://source.unsplash.com/Mv9hjnEUHR4/60x60"
-                                            alt="...">
-                                        <div class="status-indicator bg-success"></div>
-                                    </div>
-                                    <div>
-                                        <div class="text-truncate">Am I a good boy? The reason I ask is because
-                                            someone
-                                            told me that people say this to all dogs, even if they aren't
-                                            good...</div>
-                                        <div class="small text-gray-500">Chicken the Dog · 2w</div>
-                                    </div>
-                                </a>
-                                <a class="dropdown-item text-center small text-gray-500" href="#">Read More
-                                    Messages</a>
-                            </div>
-                        </li>
-
-                        <div class="topbar-divider d-none d-sm-block"></div>
-
-                        <!-- Nav Item - User Information -->
-                        <li class="nav-item dropdown no-arrow">
-                            <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
-                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">{{user.username}}</span>
-                                {%if user_details.profile_picture%}
-                                <img class="img-profile rounded-circle" src="{{user_details.profile_picture.url}}">
+                                </ul>
                                 {%else%}
-                                <img class="img-profile rounded-circle"
-                                    src="{% static 'MainApp/img/undraw_profile.svg' %}">
+                                <a class="btn btn-primary align-self-center" href="{% url 'login' %}">Login</a>
                                 {%endif%}
-                            </a>
-                            <!-- Dropdown - User Information -->
-                            <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
-                                aria-labelledby="userDropdown">
-                                <a class="dropdown-item" href="{% url 'user-details' %}">
-                                    <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
-                                    Profile
-                                </a>
-                                <a class="dropdown-item" href="#">
-                                    <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
-                                    Settings
-                                </a>
-                                <a class="dropdown-item" href="#">
-                                    <i class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i>
-                                    Activity Log
-                                </a>
-                                <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
-                                    <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
-                                    Logout
-                                </a>
                             </div>
-                        </li>
-
-                    </ul>
-                    {%else%}
-                    <a class="btn btn-primary" href="{% url 'login' %}">Login</a>
-                    {%endif%}
+                        </div>
+                    </div>
                 </nav>
                 <!-- End of Topbar -->
 
@@ -356,7 +235,7 @@
                             <div class="modal-content">
                                 <div class="modal-header">
                                     <h5 class="modal-title" id="exampleModalLongTitle">
-                                        {{user_details.first_name}}_{{user_details.last_name}} resume</h5>
+                                        {{user_details.first_name}}_{{user_details.last_name}} CV</h5>
                                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                         <span aria-hidden="true">&times;</span>
                                     </button>
@@ -368,27 +247,23 @@
                                             rel="noopener noreferrer">Open in
                                             browser</a></p>
                                     {% else %}
-                                    <p>No resume available.</p>
+                                    <p>{{user_details.user}} currently don't have a CV on Porthree.</p>
                                     {% endif %}
                                 </div>
                                 <!-- <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Save changes</button>
-            </div> -->
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                    <button type="button" class="btn btn-primary">Save changes</button>
+                                </div> -->
                             </div>
                         </div>
                     </div>
-
-
-                    {% block content %}{% endblock %}
-
+                    <div style="padding-top: 100px;padding-bottom: 100px;">
+                        {% block content %}{% endblock %}
+                    </div>
                 </div>
                 <!-- /.container-fluid -->
-
             </div>
             <!-- End of Main Content -->
-
-
             <!-- Footer -->
             <footer class="sticky-footer bg-white">
                 <div class="container my-auto">
@@ -404,7 +279,6 @@
 
     </div>
     <!-- End of Page Wrapper -->
-
     <!-- Scroll to Top Button-->
     <a class="scroll-to-top rounded" href="#page-top">
         <i class="fas fa-angle-up"></i>

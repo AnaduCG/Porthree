@@ -5,548 +5,314 @@
 
 {% block content %}
 <!-- Hero Section -->
-<div class="container mb-4">
+<div class="jumbotron">
+    <div class="col">
+        <div class="container-fluid text-center">
+            <h1 class="h1 font-weight-bold align-self-start text-dark">Your Personal Portfolio
+                Powerhouse </h1>
+            <p class="h3 w-75 w-100 my-5">Elevate your professional journey with Porthree an intuitive portfolio
+                management
+                platform designed for effortless skill and achievement showcasing. Our user-friendly interface
+                simplifies the process, allowing you to present a polished profile that resonates with employers and
+                collaborators. Join Porthree for a streamlined approach to career growth.</p>
+            <hr class="my-4">
+            <p class="lead">
+                <a class="btn btn-primary btn-lg" href="{%url 'signup' %}" role="button">Get started</a>
+            </p>
+        </div>
+    </div>
+</div>
 
-    <!-- Content Row -->
-    <div class="container vh-100">
-        <div class="card shadow mb-4 p-5  bg-primary h-80 d-flex">
-            <!-- Hero slider/ carousel -->
-            <div id="carouselExampleIndicators" class="carousel slide m-auto" data-ride="carousel">
-                <ol class="carousel-indicators">
-                    <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active">
-                    </li>
-                    <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-                    <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
-                </ol>
-                <div class="carousel-inner">
-                    <div class="carousel-item active">
-                        <div class=" d-flex justify-content-between">
-                            <div class=" w-75 text-light d-flex flex-column justify-content-between">
-                                <h2 class="display-4 font-weight-bold justify-self-baseline">Anadu
-                                    Godwin</h2>
-                                <h2 class=" font-weight-bold justify-self-baseline text-success">Anadu
-                                    Godwin</h2>
-                                <p class="font-bold h4 h-50 my-5">Lorem ipsum dolor sit amet
-                                    consectetur
-                                    adipisicing elit. Officia
-                                    temporibus saepe veritatis cupiditate itaque, ex laborum omnis
-                                    voluptas
-                                    suscipit voluptatem exercitationem odio, harum modi rerum
-                                    commodi
-                                    tenetur aperiam adipisci, vitae dicta? Vitae, rerum optio,
-                                    temporibus.
-                                </p>
-                                <div class="d-flex my-2 mb-4 justify-content-between w-50">
-                                    <div class="border card font-weight-bold text-light bg-success px-2">
-                                        Skill1</div>
-                                    <div class="border card font-weight-bold text-light bg-success px-2">
-                                        Skill2</div>
-                                    <div class="border card font-weight-bold text-light bg-success px-2">
-                                        Skill3</div>
-                                </div>
-                                <div>
-                                    <a href="" class="btn btn-secondary">Visit
-                                        portfolio...</a>
-                                </div>
-                            </div>
-                            <div class="d-flex align-items-center">
-                                <h2 class="font-weight-bold display-1 m-auto text-warning">AG</h2>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="carousel-item">
-                        <div class=" d-flex justify-content-between">
-                            <div class=" w-75 text-light d-flex flex-column justify-content-between">
-                                <h2 class="display-4 font-weight-bold justify-self-baseline">Admin
-                                    Istrator</h2>
-                                <h2 class=" font-weight-bold justify-self-baseline text-success">Admin
-                                    Istrator</h2>
-                                <p class="font-bold h4 h-50 my-5">Lorem ipsum dolor sit amet
-                                    consectetur
-                                    adipisicing elit. Officia
-                                    temporibus saepe veritatis cupiditate itaque, ex laborum omnis
-                                    voluptas
-                                    suscipit voluptatem exercitationem odio, harum modi rerum
-                                    commodi
-                                    tenetur aperiam adipisci, vitae dicta? Vitae, rerum optio,
-                                    temporibus.
-                                </p>
-                                <div class="d-flex my-2 mb-4 justify-content-between w-50">
-                                    <div class="border card font-weight-bold text-light bg-success px-2">
-                                        Skill1</div>
-                                    <div class="border card font-weight-bold text-light bg-success px-2">
-                                        Skill2</div>
-                                    <div class="border card font-weight-bold text-light bg-success px-2">
-                                        Skill3</div>
-                                </div>
-                                <div>
-                                    <a href="" class="btn btn-secondary">Visit
-                                        portfolio...</a>
-                                </div>
-                            </div>
-                            <div class="d-flex align-items-center">
-                                <h2 class="font-weight-bold display-1 m-auto text-warning">AI</h2>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="carousel-item">
-                        <div class=" d-flex justify-content-between">
-                            <div class=" w-75 text-light d-flex flex-column justify-content-between">
-                                <h2 class="display-4 font-weight-bold justify-self-baseline">Ernest
-                                    Mbang
-                                <h2 class=" font-weight-bold justify-self-baseline text-success">Ernest
-                                    Mbang
-                                </h2>
-                                <p class="font-bold h4 h-50 my-5">Lorem ipsum dolor sit amet
-                                    consectetur
-                                    adipisicing elit. Officia
-                                    temporibus saepe veritatis cupiditate itaque, ex laborum omnis
-                                    voluptas
-                                    suscipit voluptatem exercitationem odio, harum modi rerum
-                                    commodi
-                                    tenetur aperiam adipisci, vitae dicta? Vitae, rerum optio,
-                                    temporibus.
-                                </p>
-                                <div class="d-flex my-2 mb-4 justify-content-between w-50">
-                                    <div class="border card font-weight-bold text-light bg-success px-2">
-                                        Skill1</div>
-                                    <div class="border card font-weight-bold text-light bg-success px-2">
-                                        Skill2</div>
-                                    <div class="border card font-weight-bold text-light bg-success px-2">
-                                        Skill3</div>
-                                </div>
-                                <div>
-                                    <a href="" class="btn btn-secondary">Visit
-                                        portfolio...</a>
-                                </div>
-                            </div>
-                            <div class="d-flex align-items-center">
-                                <h2 class="font-weight-bold display-1 m-auto text-warning">EM</h2>
-                            </div>
+<!-- End of hero section -->
+
+
+<!-- Page Heading -->
+<div class="d-sm-flex align-items-center justify-content-center mb-4 pt-5">
+    <h1 class="mb-auto text-gray-800 mb-primary h2 border-bottom border-primary pr-5 font-weight-bold">
+        Featured Portfolios</h1>
+
+</div>
+<!-- portfolios section -->
+<div class="d-flex flex-wrap justify-content-center">
+    <!-- portfolio card -->
+    {%for user_detail in user_details|slice:":6"%}
+    <a href="{%url 'portfolio' user_detail.user%}">
+        <div class="card shadow-lg py-3 border border-primary m-3" style="width: 300px;">
+            <div class=" d-flex justify-content-center mb-3 "><img src="{{user_detail.profile_picture.url}}" width="150"
+                    height="150" class="rounded-circle" alt=""></div>
+            <div class="container">
+                <div class="h5 font-bold text-center">{{user_detail}}</div>
+                <small class="font-bold">{{user_detail.career}}</small>
+                <div class="card my-3">
+                    <div class="dropdown show">
+                        <a class="btn btn-success dropdown-toggle w-100" href="#" role="button" id="dropdownMenuLink"
+                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            skills
+                        </a>
+                        <div class="dropdown-menu w-100 border border-success" aria-labelledby="dropdownMenuLink">
+                            <a class="dropdown-item" href="#">Action</a>
+                            <a class="dropdown-item" href="#">Another action</a>
+                            <a class="dropdown-item" href="#">Something else here</a>
                         </div>
                     </div>
                 </div>
-                <a class="carousel-control-prev h-25 my-auto" href="#carouselExampleIndicators" role="button"
-                    data-slide="prev">
-                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                    <span class="sr-only">Previous</span>
-                </a>
-                <a class="carousel-control-next h-25 my-auto" href="#carouselExampleIndicators" role="button"
-                    data-slide="next">
-                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                    <span class="sr-only">Next</span>
-                </a>
+                <p class="text-center">{{user_detail.about_me|truncatechars:100}}</p>
+                <div class="col justify-content-center">
+                    <i class="col">{{user_detail.email}}</i>
+                    <!-- <i class="col">{{user_detail.phone_number}}</i> -->
+                </div>
+            </div>
+        </div>
+    </a>
+    {%endfor%}
+</div>
+
+
+<!-- porthree about section -->
+<div class="container pt-5">
+    <div class="container">
+
+        <!-- Page Heading -->
+        <div class="d-sm-flex align-items-center justify-content-between mb-4 mt-5">
+            <h1 class="mb-auto text-gray-800 mb-primary h2 border-bottom border-primary pr-5 font-weight-bold">
+                About Porthree</h1>
+
+        </div>
+        <div class="container-fluid h5">
+            Porthree is a personal portfolio management platform designed to empower individuals to showcase their
+            skills,
+            achievements, and experiences in a captivating and professional manner. Built by aspiring software
+            engineers
+            at
+            Holberton School, Porthree aims to simplify the process of creating and maintaining a portfolio, freeing
+            users
+            to
+            focus on what truly matters: their career growth and personal development.
+        </div>
+    </div>
+    <!-- end of porthree about section -->
+
+
+
+    <!-- porthree feature section -->
+    <div class="conatiner-fluid pt-5">
+        <div class="conatiner-fluid row border rounded">
+            <div class="nav flex-column nav-pills col col-lg-3 border p-1 rounded" id="v-pills-tab" role="tablist"
+                aria-orientation="vertical">
+                <a class="nav-link active p-2 border font-weight-bold rounded m-1" id="v-pills-home-tab"
+                    data-toggle="pill" href="#v-pills-home" role="tab" aria-controls="v-pills-home"
+                    aria-selected="true">Envision Your
+                    Portfolio Unveiled</a>
+                <a class="nav-link p-2 border font-weight-bold rounded m-1" id="v-pills-profile-tab" data-toggle="pill"
+                    href="#v-pills-profile" role="tab" aria-controls="v-pills-profile" aria-selected="false">Unleash
+                    Your
+                    Voice with Engaging Blog Posts</a>
+                <a class="nav-link p-2 border font-weight-bold rounded m-1" id="v-pills-messages-tab" data-toggle="pill"
+                    href="#v-pills-messages" role="tab" aria-controls="v-pills-messages" aria-selected="false">Embrace
+                    Creativity with Project Showcase</a>
+                <a class="nav-link p-2 border font-weight-bold rounded m-1" id="v-pills-settings-tab" data-toggle="pill"
+                    href="#v-pills-settings" role="tab" aria-controls="v-pills-settings" aria-selected="false">Forge
+                    Connections in a Thriving Community</a>
+            </div>
+            <div class="tab-content col align-self-center text-dark h-100" id="v-pills-tabContent">
+                <div class="tab-pane h5 my-auto fade show active" id="v-pills-home" role="tabpanel"
+                    aria-labelledby="v-pills-home-tab">Step
+                    into a world where your expertise and accomplishments take center stage, where your passion and
+                    creativity
+                    shine
+                    through, and where your journey to professional success is seamlessly facilitated. Porthree,
+                    your
+                    personal
+                    portfolio powerhouse, empowers you to craft a captivating digital showcase that highlights your
+                    unique
+                    value
+                    and
+                    attracts the opportunities you deserve...
+                </div>
+                <div class="tab-pane h5 my-auto text-dark fade" id="v-pills-profile" role="tabpanel"
+                    aria-labelledby="v-pills-profile-tab">Immerse
+                    yourself in the world of thought leadership and share your insights with the world through
+                    Porthree's
+                    intuitive
+                    blog creation tool. Whether you're an expert in your field or a budding enthusiast, Porthree
+                    provides
+                    you
+                    with a
+                    platform to express your knowledge, expertise, and passion in a compelling manner....
+                </div>
+                <div class="tab-pane h5 my-auto text-dark fade" id="v-pills-messages" role="tabpanel"
+                    aria-labelledby="v-pills-messages-tab">
+                    Transform
+                    your most significant projects into captivating presentations that showcase your technical
+                    prowess
+                    and
+                    problem-solving abilities. Porthree's project showcase feature empowers you to create visually
+                    appealing
+                    and
+                    easily digestible summaries of your achievements, captivating the attention of hiring managers,
+                    potential
+                    clients, and like-minded individuals....
+                </div>
+                <div class="tab-pane h5 my-auto text-dark fade" id="v-pills-settings" role="tabpanel"
+                    aria-labelledby="v-pills-settings-tab">Join a
+                    vibrant community of aspiring and experienced professionals who share your passion for personal
+                    growth
+                    and
+                    professional excellence. Porthree's community platform fosters meaningful connections, enabling
+                    you
+                    to
+                    exchange
+                    ideas, collaborate on projects, and expand your network, opening doors to new opportunities and
+                    collaborations....
+                </div>
             </div>
         </div>
     </div>
-
 </div>
-<!-- End of hero section -->
+<!-- end of porthree feature section -->
 
-<!-- Content Row -->
+
+<!-- Posts section -->
+        {%if projects%}
 <div class="col">
     <!-- Page Heading -->
     <div class="d-sm-flex align-items-center justify-content-between mb-4 mt-5">
-        <h1 class="h3 mb-auto text-gray-800 mb-primary h2 border-bottom border-primary pr-5 font-weight-bold">
+        <h1 class="mb-auto text-gray-800 mb-primary h2 border-bottom border-primary pr-5 font-weight-bold">
             Featured Projects</h1>
 
     </div>
     <!--  -->
     <div class="container-fluid d-flex flex-wrap w-100 justify-content-center" style="gap: 20px;">
-
-        <!-- project card -->
-        <div class="card shadow mb-4 border border-danger w-25 shadow">
-            <div class="card-header py-3">
-                <h6 class="m-0 font-weight-bold text-primary">Project title here</h6>
-            </div>
-            <div class="card-body">
-                <div class="text-center">
-                    <img class="img-fluid px-3 px-sm-4 mt-3 mb-4" style="width: 25rem;"
-                        src="{% static 'MainApp/img/undraw_posting_photo.svg' %}" alt="...">
+            
+            <!-- project cards container  -->
+            <div class="container-fluid d-flex flex-wrap w-100 justify-content-center" style="gap: 20px;">
+                <!-- project card -->
+                {%for project in projects|slice:":4" %}
+                <a href="#" type="button" data-toggle="modal" data-target="#project{{ project.id }}">
+                    <div class="card shadow" style="width: 350px;">
+                        <div class="card-body p-0 pb-3">
+                            <div class="text-center rounded-top d-flex justify-content-center p-3" style="background: url('../../static/MainApp/img/undraw_posting_photo.svg') rgba(0, 0, 0, 0.514);
+                            height: 200px;background-repeat: no-repeat;background-size: 100%;
+                            background-position: center; width: 349px; background-blend-mode: multiply;"></div>
+                            <div class="container d-flex flex-column p-1 pt-3 px-3" style="gap: 10px;">
+                                <h5 class="mx-1 font-weight-bold text-success text-center text-capitalize align-self-center"
+                                    style="height: 50px;">
+                                    {{project.title|truncatechars:40}}</h5>
+                                <div class="dropdown show">
+                                    <a class="dropdown-toggle h6 font-weight-bold text-gray" href="#" role="button"
+                                        id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true"
+                                        aria-expanded="false">
+                                        Skills
+                                    </a>
+                                    <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                                        <a class="dropdown-item" href="#">Action</a>
+                                        <a class="dropdown-item" href="#">Another action</a>
+                                        <a class="dropdown-item" href="#">Something else here</a>
+                                    </div>
+                                </div>
+                                <div class="text-bold font-weight-bold">Created: {{project.created_at}}
+                                </div>
+                                <div class="text-bold font-weight-bold"> By: <a class="text-capitalize"
+                                        href="{%url 'portfolio' project.user%}">{{project.user}}</a></div>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+                <!-- projects modal -->
+                <!-- Modal -->
+                <div class="modal fade" id="project{{ project.id }}" tabindex="-1" role="dialog"
+                    aria-labelledby="projectTitle" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title text-capitalize" id="projectTitle">{{project.title}}</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                {{project.about|safe}}
+                            </div>
+                            <div class="modal-footer">
+                                {%if user.is_authenticated%}
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                <button type="button" class="btn btn-primary">Save changes</button>
+                                {%endif%}
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <p>Add some quality, svg illustrations to your project courtesy of <a target="_blank" rel="nofollow"
-                        href="https://undraw.co/">unDraw</a>, a
-                    constantly updated collection of beautiful svg images that you can use
-                    completely free and without attribution!</p>
-
-                <div class="text-bold font-weight-bold text-success">User: User name</div>
-                <div class="text-bold font-weight-bold text-danger">User title: career</div>
-                <div class="text-bold font-weight-bold text-info">Created: 6th december 2023</div>
-
-                <div class="d-flex flex-wrap my-4" style="gap: 5px">
-                    <div class="border card font-weight-bold text-light bg-success px-2">tool1</div>
-                    <div class="border card font-weight-bold text-light bg-success px-2">tool2</div>
-                    <div class="border card font-weight-bold text-light bg-success px-2">tool2</div>
-                    <div class="border card font-weight-bold text-light bg-success px-2">tool2</div>
-                    <div class="border card font-weight-bold text-light bg-success px-2">tool2</div>
-                    <div class="border card font-weight-bold text-light bg-success px-2">tool2</div>
-                    <div class="border card font-weight-bold text-light bg-success px-2">tool3</div>
-                </div>
-                <a target="_blank" rel="nofollow" href="https://undraw.co/">See project &rarr;</a>
-            </div>
-        </div>
-        <!-- project card -->
-        <div class="card shadow mb-4 border border-danger w-25 shadow">
-            <div class="card-header py-3">
-                <h6 class="m-0 font-weight-bold text-primary">Project title here</h6>
-            </div>
-            <div class="card-body">
-                <div class="text-center">
-                    <img class="img-fluid px-3 px-sm-4 mt-3 mb-4" style="width: 25rem;"
-                        src="{% static 'MainApp/img/undraw_posting_photo.svg' %}" alt="...">
-                </div>
-                <p>Add some quality, svg illustrations to your project courtesy of <a target="_blank" rel="nofollow"
-                        href="https://undraw.co/">unDraw</a>, a
-                    constantly updated collection of beautiful svg images that you can use
-                    completely free and without attribution!</p>
-
-                <div class="text-bold font-weight-bold text-success">User: User name</div>
-                <div class="text-bold font-weight-bold text-danger">User title: career</div>
-                <div class="text-bold font-weight-bold text-info">Created: 6th december 2023</div>
-
-                <div class="d-flex flex-wrap my-4" style="gap: 5px">
-                    <div class="border card font-weight-bold text-light bg-success px-2">tool1</div>
-                    <div class="border card font-weight-bold text-light bg-success px-2">tool2</div>
-                    <div class="border card font-weight-bold text-light bg-success px-2">tool2</div>
-                    <div class="border card font-weight-bold text-light bg-success px-2">tool2</div>
-                    <div class="border card font-weight-bold text-light bg-success px-2">tool2</div>
-                    <div class="border card font-weight-bold text-light bg-success px-2">tool2</div>
-                    <div class="border card font-weight-bold text-light bg-success px-2">tool3</div>
-                </div>
-                <a target="_blank" rel="nofollow" href="https://undraw.co/">See project &rarr;</a>
-            </div>
-        </div>
-        <!-- project card -->
-        <div class="card shadow mb-4 border border-danger w-25 shadow">
-            <div class="card-header py-3">
-                <h6 class="m-0 font-weight-bold text-primary">Project title here</h6>
-            </div>
-            <div class="card-body">
-                <div class="text-center">
-                    <img class="img-fluid px-3 px-sm-4 mt-3 mb-4" style="width: 25rem;"
-                        src="{% static 'MainApp/img/undraw_posting_photo.svg' %}" alt="...">
-                </div>
-                <p>Add some quality, svg illustrations to your project courtesy of <a target="_blank" rel="nofollow"
-                        href="https://undraw.co/">unDraw</a>, a
-                    constantly updated collection of beautiful svg images that you can use
-                    completely free and without attribution!</p>
-
-                <div class="text-bold font-weight-bold text-success">User: User name</div>
-                <div class="text-bold font-weight-bold text-danger">User title: career</div>
-                <div class="text-bold font-weight-bold text-info">Created: 6th december 2023</div>
-
-                <div class="d-flex flex-wrap my-4" style="gap: 5px">
-                    <div class="border card font-weight-bold text-light bg-success px-2">tool1</div>
-                    <div class="border card font-weight-bold text-light bg-success px-2">tool2</div>
-                    <div class="border card font-weight-bold text-light bg-success px-2">tool2</div>
-                    <div class="border card font-weight-bold text-light bg-success px-2">tool2</div>
-                    <div class="border card font-weight-bold text-light bg-success px-2">tool2</div>
-                    <div class="border card font-weight-bold text-light bg-success px-2">tool2</div>
-                    <div class="border card font-weight-bold text-light bg-success px-2">tool3</div>
-                </div>
-                <a target="_blank" rel="nofollow" href="https://undraw.co/">See project &rarr;</a>
+                {%endfor%}
+            <div class="text-primary d-flex justify-content-end">
+                <a rel="nofollow" href="#">See more Projects &rarr;</a>
             </div>
         </div>
-        <!-- project card -->
-        <div class="card shadow mb-4 border border-danger w-25 shadow">
-            <div class="card-header py-3">
-                <h6 class="m-0 font-weight-bold text-primary">Project title here</h6>
-            </div>
-            <div class="card-body">
-                <div class="text-center">
-                    <img class="img-fluid px-3 px-sm-4 mt-3 mb-4" style="width: 25rem;"
-                        src="{% static 'MainApp/img/undraw_posting_photo.svg' %}" alt="...">
-                </div>
-                <p>Add some quality, svg illustrations to your project courtesy of <a target="_blank" rel="nofollow"
-                        href="https://undraw.co/">unDraw</a>, a
-                    constantly updated collection of beautiful svg images that you can use
-                    completely free and without attribution!</p>
-
-                <div class="text-bold font-weight-bold text-success">User: User name</div>
-                <div class="text-bold font-weight-bold text-danger">User title: career</div>
-                <div class="text-bold font-weight-bold text-info">Created: 6th december 2023</div>
-
-                <div class="d-flex flex-wrap my-4" style="gap: 5px">
-                    <div class="border card font-weight-bold text-light bg-success px-2">tool1</div>
-                    <div class="border card font-weight-bold text-light bg-success px-2">tool2</div>
-                    <div class="border card font-weight-bold text-light bg-success px-2">tool2</div>
-                    <div class="border card font-weight-bold text-light bg-success px-2">tool2</div>
-                    <div class="border card font-weight-bold text-light bg-success px-2">tool2</div>
-                    <div class="border card font-weight-bold text-light bg-success px-2">tool2</div>
-                    <div class="border card font-weight-bold text-light bg-success px-2">tool3</div>
-                </div>
-                <a target="_blank" rel="nofollow" href="https://undraw.co/">See project &rarr;</a>
-            </div>
-        </div>
-        <!-- project card -->
-        <div class="card shadow mb-4 border border-danger w-25 shadow">
-            <div class="card-header py-3">
-                <h6 class="m-0 font-weight-bold text-primary">Project title here</h6>
-            </div>
-            <div class="card-body">
-                <div class="text-center">
-                    <img class="img-fluid px-3 px-sm-4 mt-3 mb-4" style="width: 25rem;"
-                        src="{% static 'MainApp/img/undraw_posting_photo.svg' %}" alt="...">
-                </div>
-                <p>Add some quality, svg illustrations to your project courtesy of <a target="_blank" rel="nofollow"
-                        href="https://undraw.co/">unDraw</a>, a
-                    constantly updated collection of beautiful svg images that you can use
-                    completely free and without attribution!</p>
-
-                <div class="text-bold font-weight-bold text-success">User: User name</div>
-                <div class="text-bold font-weight-bold text-danger">User title: career</div>
-                <div class="text-bold font-weight-bold text-info">Created: 6th december 2023</div>
-
-                <div class="d-flex flex-wrap my-4" style="gap: 5px">
-                    <div class="border card font-weight-bold text-light bg-success px-2">tool1</div>
-                    <div class="border card font-weight-bold text-light bg-success px-2">tool2</div>
-                    <div class="border card font-weight-bold text-light bg-success px-2">tool2</div>
-                    <div class="border card font-weight-bold text-light bg-success px-2">tool2</div>
-                    <div class="border card font-weight-bold text-light bg-success px-2">tool2</div>
-                    <div class="border card font-weight-bold text-light bg-success px-2">tool2</div>
-                    <div class="border card font-weight-bold text-light bg-success px-2">tool3</div>
-                </div>
-                <a target="_blank" rel="nofollow" href="https://undraw.co/">See project &rarr;</a>
-            </div>
-        </div>
-        <!-- project card -->
-        <div class="card shadow mb-4 border border-danger w-25 shadow">
-            <div class="card-header py-3">
-                <h6 class="m-0 font-weight-bold text-primary">Project title here</h6>
-            </div>
-            <div class="card-body">
-                <div class="text-center">
-                    <img class="img-fluid px-3 px-sm-4 mt-3 mb-4" style="width: 25rem;"
-                        src="{% static 'MainApp/img/undraw_posting_photo.svg' %}" alt="...">
-                </div>
-                <p>Add some quality, svg illustrations to your project courtesy of <a target="_blank" rel="nofollow"
-                        href="https://undraw.co/">unDraw</a>, a
-                    constantly updated collection of beautiful svg images that you can use
-                    completely free and without attribution!</p>
-
-                <div class="text-bold font-weight-bold text-success">User: User name</div>
-                <div class="text-bold font-weight-bold text-danger">User title: career</div>
-                <div class="text-bold font-weight-bold text-info">Created: 6th december 2023</div>
-
-                <div class="d-flex flex-wrap my-4" style="gap: 5px">
-                    <div class="border card font-weight-bold text-light bg-success px-2">tool1</div>
-                    <div class="border card font-weight-bold text-light bg-success px-2">tool2</div>
-                    <div class="border card font-weight-bold text-light bg-success px-2">tool2</div>
-                    <div class="border card font-weight-bold text-light bg-success px-2">tool2</div>
-                    <div class="border card font-weight-bold text-light bg-success px-2">tool2</div>
-                    <div class="border card font-weight-bold text-light bg-success px-2">tool2</div>
-                    <div class="border card font-weight-bold text-light bg-success px-2">tool3</div>
-                </div>
-                <a target="_blank" rel="nofollow" href="https://undraw.co/">See project &rarr;</a>
-            </div>
-        </div>
-
-    </div>
 </div>
-<!-- featured posts section -->
+        {%endif%}
+
+<!-- Posts section -->
+{%if posts%}
 <div class="col">
     <!-- Page Heading -->
     <div class="d-sm-flex align-items-center justify-content-between mb-4 mt-5">
-        <h1 class="h3 mb-auto text-gray-800 mb-primary h2 border-bottom border-primary pr-5 font-weight-bold">
+        <h1 class="mb-auto text-gray-800 mb-primary h2 border-bottom border-primary pr-5 font-weight-bold">
             Featured Posts</h1>
 
     </div>
     <!--  -->
     <div class="container-fluid d-flex flex-wrap w-100 justify-content-center" style="gap: 20px;">
+        <!-- Post card -->
 
         <!-- Post card -->
-        <div class="card shadow mb-4 border border-danger w-25 shadow">
-            <div class="card-header py-3">
-                <h6 class="m-0 font-weight-bold text-primary">Post title here</h6>
-            </div>
-            <div class="card-body">
-                <div class="text-center">
-                    <img class="img-fluid px-3 px-sm-4 mt-3 mb-4" style="width: 25rem;"
-                        src="{% static 'MainApp/img/undraw_posting_photo.svg' %}" alt="...">
-                </div>
-                <p>Add some quality, svg illustrations to your Post courtesy of <a target="_blank" rel="nofollow"
-                        href="https://undraw.co/">unDraw</a>, a
-                    constantly updated collection of beautiful svg images that you can use
-                    completely free and without attribution!</p>
+        {%for post in posts|slice:":8" %}
+        <a href="{%url 'post-detail' post.slug %}" rel="nofollow">
+            <div class="card shadow" style="width: 350px;">
+                <div class="card-body p-0 pb-3">
+                    {%if post.post_image%}
+                    <div class="text-center w-100  rounded-top d-flex justify-content-center p-3" style="background: url('{{ post.post_image.url }}') rgba(0, 0, 0, 0.514);
+                            height: 200px;background-repeat: no-repeat;background-size: 100%;
+                            background-position: center; background-blend-mode: multiply;">
+                    </div>
+                    {%else%}
+                    <div class="text-center w-100  rounded-top d-flex justify-content-center p-3" style="background: url('../../static/MainApp/img/undraw_posting_photo.svg') rgba(0, 0, 0, 0.514);
+                            height: 200px;background-repeat: no-repeat;background-size: 100%;
+                            background-position: center; background-blend-mode: multiply;">
 
-                <div class="text-bold font-weight-bold text-success">User: User name</div>
-                <div class="text-bold font-weight-bold text-danger">User title: career</div>
-                <div class="text-bold font-weight-bold text-info">Created: 6th december 2023</div>
+                    </div>
+                    {%endif%}
+                    <!-- <div class="dropdown-divider"></div> -->
 
-                <div class="d-flex flex-wrap my-4" style="gap: 5px">
-                    <div class="border card font-weight-bold text-light bg-success px-2">tag1</div>
-                    <div class="border card font-weight-bold text-light bg-success px-2">tag2</div>
-                    <div class="border card font-weight-bold text-light bg-success px-2">tag2</div>
-                    <div class="border card font-weight-bold text-light bg-success px-2">tag2</div>
-                    <div class="border card font-weight-bold text-light bg-success px-2">tag2</div>
-                    <div class="border card font-weight-bold text-light bg-success px-2">tag2</div>
-                    <div class="border card font-weight-bold text-light bg-success px-2">tag3</div>
-                </div>
-                <a target="_blank" rel="nofollow" href="https://undraw.co/">See Post &rarr;</a>
-            </div>
-        </div>
-        <!-- Post card -->
-        <div class="card shadow mb-4 border border-danger w-25 shadow">
-            <div class="card-header py-3">
-                <h6 class="m-0 font-weight-bold text-primary">Post title here</h6>
-            </div>
-            <div class="card-body">
-                <div class="text-center">
-                    <img class="img-fluid px-3 px-sm-4 mt-3 mb-4" style="width: 25rem;"
-                        src="{% static 'MainApp/img/undraw_posting_photo.svg' %}" alt="...">
-                </div>
-                <p>Add some quality, svg illustrations to your Post courtesy of <a target="_blank" rel="nofollow"
-                        href="https://undraw.co/">unDraw</a>, a
-                    constantly updated collection of beautiful svg images that you can use
-                    completely free and without attribution!</p>
+                    <div class="container d-flex flex-column p-1 pt-3 px-3" style="gap: 10px;">
+                        <h5 class="mx-1 font-weight-bold text-success text-center text-capitalize align-self-center"
+                            style="height: 50px;">
+                            {{post.title|truncatechars:40}}</h5>
+                        <div class="text-bold font-weight-bold"> By: <a class="text-capitalize"
+                                href="{%url 'portfolio' post.user%}">{{post.user}}</a></div>
+                        <div class="dropdown show">
+                            <a class="dropdown-toggle h6 font-weight-bold text-gray" href="#" role="button"
+                                id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Tags
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                                <a class="dropdown-item" href="#">Action</a>
+                                <a class="dropdown-item" href="#">Another action</a>
+                                <a class="dropdown-item" href="#">Something else here</a>
+                            </div>
+                        </div>
+                        <div class="text-bold font-weight-bold">Posted: {{post.created_at}}
+                        </div>
 
-                <div class="text-bold font-weight-bold text-success">User: User name</div>
-                <div class="text-bold font-weight-bold text-danger">User title: career</div>
-                <div class="text-bold font-weight-bold text-info">Created: 6th december 2023</div>
-
-                <div class="d-flex flex-wrap my-4" style="gap: 5px">
-                    <div class="border card font-weight-bold text-light bg-success px-2">tag1</div>
-                    <div class="border card font-weight-bold text-light bg-success px-2">tag2</div>
-                    <div class="border card font-weight-bold text-light bg-success px-2">tag2</div>
-                    <div class="border card font-weight-bold text-light bg-success px-2">tag2</div>
-                    <div class="border card font-weight-bold text-light bg-success px-2">tag2</div>
-                    <div class="border card font-weight-bold text-light bg-success px-2">tag2</div>
-                    <div class="border card font-weight-bold text-light bg-success px-2">tag3</div>
+                    </div>
                 </div>
-                <a target="_blank" rel="nofollow" href="https://undraw.co/">See Post &rarr;</a>
             </div>
-        </div>
-        <!-- Post card -->
-        <div class="card shadow mb-4 border border-danger w-25 shadow">
-            <div class="card-header py-3">
-                <h6 class="m-0 font-weight-bold text-primary">Post title here</h6>
-            </div>
-            <div class="card-body">
-                <div class="text-center">
-                    <img class="img-fluid px-3 px-sm-4 mt-3 mb-4" style="width: 25rem;"
-                        src="{% static 'MainApp/img/undraw_posting_photo.svg' %}" alt="...">
-                </div>
-                <p>Add some quality, svg illustrations to your Post courtesy of <a target="_blank" rel="nofollow"
-                        href="https://undraw.co/">unDraw</a>, a
-                    constantly updated collection of beautiful svg images that you can use
-                    completely free and without attribution!</p>
+        </a>
 
-                <div class="text-bold font-weight-bold text-success">User: User name</div>
-                <div class="text-bold font-weight-bold text-danger">User title: career</div>
-                <div class="text-bold font-weight-bold text-info">Created: 6th december 2023</div>
-
-                <div class="d-flex flex-wrap my-4" style="gap: 5px">
-                    <div class="border card font-weight-bold text-light bg-success px-2">tag1</div>
-                    <div class="border card font-weight-bold text-light bg-success px-2">tag2</div>
-                    <div class="border card font-weight-bold text-light bg-success px-2">tag2</div>
-                    <div class="border card font-weight-bold text-light bg-success px-2">tag2</div>
-                    <div class="border card font-weight-bold text-light bg-success px-2">tag2</div>
-                    <div class="border card font-weight-bold text-light bg-success px-2">tag2</div>
-                    <div class="border card font-weight-bold text-light bg-success px-2">tag3</div>
-                </div>
-                <a target="_blank" rel="nofollow" href="https://undraw.co/">See Post &rarr;</a>
-            </div>
-        </div>
-        <!-- Post card -->
-        <div class="card shadow mb-4 border border-danger w-25 shadow">
-            <div class="card-header py-3">
-                <h6 class="m-0 font-weight-bold text-primary">Post title here</h6>
-            </div>
-            <div class="card-body">
-                <div class="text-center">
-                    <img class="img-fluid px-3 px-sm-4 mt-3 mb-4" style="width: 25rem;"
-                        src="{% static 'MainApp/img/undraw_posting_photo.svg' %}" alt="...">
-                </div>
-                <p>Add some quality, svg illustrations to your Post courtesy of <a target="_blank" rel="nofollow"
-                        href="https://undraw.co/">unDraw</a>, a
-                    constantly updated collection of beautiful svg images that you can use
-                    completely free and without attribution!</p>
-
-                <div class="text-bold font-weight-bold text-success">User: User name</div>
-                <div class="text-bold font-weight-bold text-danger">User title: career</div>
-                <div class="text-bold font-weight-bold text-info">Created: 6th december 2023</div>
-
-                <div class="d-flex flex-wrap my-4" style="gap: 5px">
-                    <div class="border card font-weight-bold text-light bg-success px-2">tag1</div>
-                    <div class="border card font-weight-bold text-light bg-success px-2">tag2</div>
-                    <div class="border card font-weight-bold text-light bg-success px-2">tag2</div>
-                    <div class="border card font-weight-bold text-light bg-success px-2">tag2</div>
-                    <div class="border card font-weight-bold text-light bg-success px-2">tag2</div>
-                    <div class="border card font-weight-bold text-light bg-success px-2">tag2</div>
-                    <div class="border card font-weight-bold text-light bg-success px-2">tag3</div>
-                </div>
-                <a target="_blank" rel="nofollow" href="https://undraw.co/">See Post &rarr;</a>
-            </div>
-        </div>
-        <!-- Post card -->
-        <div class="card shadow mb-4 border border-danger w-25 shadow">
-            <div class="card-header py-3">
-                <h6 class="m-0 font-weight-bold text-primary">Post title here</h6>
-            </div>
-            <div class="card-body">
-                <div class="text-center">
-                    <img class="img-fluid px-3 px-sm-4 mt-3 mb-4" style="width: 25rem;"
-                        src="{% static 'MainApp/img/undraw_posting_photo.svg' %}" alt="...">
-                </div>
-                <p>Add some quality, svg illustrations to your Post courtesy of <a target="_blank" rel="nofollow"
-                        href="https://undraw.co/">unDraw</a>, a
-                    constantly updated collection of beautiful svg images that you can use
-                    completely free and without attribution!</p>
-
-                <div class="text-bold font-weight-bold text-success">User: User name</div>
-                <div class="text-bold font-weight-bold text-danger">User title: career</div>
-                <div class="text-bold font-weight-bold text-info">Created: 6th december 2023</div>
-
-                <div class="d-flex flex-wrap my-4" style="gap: 5px">
-                    <div class="border card font-weight-bold text-light bg-success px-2">tag1</div>
-                    <div class="border card font-weight-bold text-light bg-success px-2">tag2</div>
-                    <div class="border card font-weight-bold text-light bg-success px-2">tag2</div>
-                    <div class="border card font-weight-bold text-light bg-success px-2">tag2</div>
-                    <div class="border card font-weight-bold text-light bg-success px-2">tag2</div>
-                    <div class="border card font-weight-bold text-light bg-success px-2">tag2</div>
-                    <div class="border card font-weight-bold text-light bg-success px-2">tag3</div>
-                </div>
-                <a target="_blank" rel="nofollow" href="https://undraw.co/">See Post &rarr;</a>
-            </div>
-        </div>
-        <!-- Post card -->
-        <div class="card shadow mb-4 border border-danger w-25 shadow">
-            <div class="card-header py-3">
-                <h6 class="m-0 font-weight-bold text-primary">Post title here</h6>
-            </div>
-            <div class="card-body">
-                <div class="text-center">
-                    <img class="img-fluid px-3 px-sm-4 mt-3 mb-4" style="width: 25rem;"
-                        src="{% static 'MainApp/img/undraw_posting_photo.svg' %}" alt="...">
-                </div>
-                <p>Add some quality, svg illustrations to your Post courtesy of <a target="_blank" rel="nofollow"
-                        href="https://undraw.co/">unDraw</a>, a
-                    constantly updated collection of beautiful svg images that you can use
-                    completely free and without attribution!</p>
-
-                <div class="text-bold font-weight-bold text-success">User: User name</div>
-                <div class="text-bold font-weight-bold text-danger">User title: career</div>
-                <div class="text-bold font-weight-bold text-info">Created: 6th december 2023</div>
-
-                <div class="d-flex flex-wrap my-4" style="gap: 5px">
-                    <div class="border card font-weight-bold text-light bg-success px-2">tag1</div>
-                    <div class="border card font-weight-bold text-light bg-success px-2">tag2</div>
-                    <div class="border card font-weight-bold text-light bg-success px-2">tag2</div>
-                    <div class="border card font-weight-bold text-light bg-success px-2">tag2</div>
-                    <div class="border card font-weight-bold text-light bg-success px-2">tag2</div>
-                    <div class="border card font-weight-bold text-light bg-success px-2">tag2</div>
-                    <div class="border card font-weight-bold text-light bg-success px-2">tag3</div>
-                </div>
-                <a target="_blank" rel="nofollow" href="https://undraw.co/">See Post &rarr;</a>
-            </div>
-        </div>
+        {%endfor%}
 
     </div>
+    <div class="text-primary d-flex justify-content-end">
+        <a rel="nofollow" href="https://undraw.co/">See All Projects &rarr;</a>
+    </div>
 </div>
-
-</div>
-<!-- /.container-fluid -->
-
-</div>
-<!-- End of Main Content -->
+{%endif%}
 {% endblock %}

@@ -5,3 +5,5 @@ Porthree/main/migrations/__pycache__/
 /Porthree/MainApp/__pycache__/*.pyc
 *.zip
 *.pyc
+*/.jpg
+*/.pdf

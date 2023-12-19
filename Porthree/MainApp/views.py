@@ -4,8 +4,8 @@ from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import login, authenticate, logout
 from .forms import SignUpForm, LoginForm
-from .forms import UserDetailsForm, ProjectForm, SkillForm
-from .models import UserDetails, Project, Skill
+from .forms import UserDetailsForm, ProjectForm, SkillForm, PostForm
+from .models import UserDetails, Project, Skill, Post
 
 
 # Create your views here.
@@ -18,7 +18,26 @@ def index(request):
     Returns:
         _object_: interaction with template
     """
-    context = {}
+    try:
+        # Check if data already exists for the current user
+        user_details = UserDetails.objects.all()
+    except UserDetails.DoesNotExist:
+        user_details = None
+    try:
+        # Check if data already exists for the current user
+        posts = Post.objects.all()
+    except Post.DoesNotExist:
+        posts = None
+    try:
+        # Check if data already exists for the current user
+        projects = Project.objects.all()
+    except Project.DoesNotExist:
+        projects = None
+    context = {
+        "user_details": user_details,
+        "posts": posts,
+        "projects": projects,
+        }
     return render(request, "MainApp/index.html", context)
 
 
@@ -62,6 +81,11 @@ def create_skill(request):
         user_skills = Skill.objects.get(user=user)
     except Skill.DoesNotExist:
         user_skills = None
+    try:
+        # Check if data already exists for the current user
+        user_details = UserDetails.objects.get(user=user)
+    except UserDetails.DoesNotExist:
+        user_details = None
 
     if request.method == "POST":
         form = SkillForm(request.POST, instance=user_skills)
@@ -76,6 +100,7 @@ def create_skill(request):
     context = {
         "form": form,
         "user_skills": user_skills,
+        "user_details": user_details,
     }
 
     return render(request, "MainApp/create-skills.html", context)
@@ -99,7 +124,7 @@ def create_project(request, project_id=None):
         project = get_object_or_404(Project, id=project_id, user=user)
 
         if request.method == "POST":
-            form = ProjectForm(request.POST, instance=project)
+            form = ProjectForm(request.POST, request.FILES, instance=project)
             if form.is_valid():
                 project = form.save(commit=False)
                 project.user = request.user
@@ -115,7 +140,7 @@ def create_project(request, project_id=None):
         project = Project(user=user)
 
         if request.method == "POST":
-            form = ProjectForm(request.POST, instance=project)
+            form = ProjectForm(request.POST, request.FILES, instance=project)
             if form.is_valid():
                 project = form.save(commit=False)
                 project.user = request.user
@@ -125,10 +150,72 @@ def create_project(request, project_id=None):
             form = ProjectForm()
 
     projects = Project.objects.filter(user=user)  # Retrieve all projects for display
+    user_details = UserDetails.objects.filter(user=user)  # Retrieve all projects for display
 
-    context = {"form": form, "projects": projects}
+    context = {
+        "form": form,
+        "projects": projects,
+        "user_details": user_details,
+        }
     return render(request, "MainApp/create-project.html", context)
 
+@login_required
+def create_post(request, post_id=None):
+    user = request.user
+
+    # Handling post deletion
+    if request.method == "POST" and "delete_post" in request.POST:
+        post_id_to_delete = request.POST.get("delete_post")
+        post_to_delete = get_object_or_404(Post, id=post_id_to_delete, user=user)
+        post_to_delete.delete()
+        return redirect("create-post")  # Redirect to current page with deletion
+
+    if post_id:
+        # Editing an existing post
+        post = get_object_or_404(Post, id=post_id, user=user)
+
+        if request.method == "POST":
+            form = PostForm(request.POST, request.FILES, instance=post)
+            if form.is_valid():
+                post = form.save(commit=False)
+                post.user = request.user
+                post.save()
+                return redirect("create-post")  # Redirect to page containing list and form
+        else:
+            form = PostForm(instance=post)
+
+    else:
+        # Creating a new post
+        post = Post(user=user)
+
+        if request.method == "POST":
+            form = PostForm(request.POST, request.FILES, instance=post)
+            if form.is_valid():
+                post = form.save(commit=False)
+                post.user = request.user
+                post.save()
+                return redirect("create-post")  # Redirect to post
+        else:
+            form = PostForm()
+
+    posts = Post.objects.filter(user=user)  # Retrieve all posts for display
+    user_details = UserDetails.objects.filter(user=user)  # Retrieve all user details for display
+
+    context = {
+        "form": form,
+        "posts": posts,
+        "user_details": user_details,
+        }
+    return render(request, "MainApp/create-post.html", context)
+
+def post_detail(request, slug):
+    """
+    this view manages the display of a pecific post content
+    """
+    post = get_object_or_404(Post, slug=slug)
+    user = request.user
+    context = {'post': post, 'user': user}
+    return render(request, 'MainApp/post_detail.html', context)
 
 def signup(request):
     if request.method == "POST":
@@ -138,7 +225,7 @@ def signup(request):
             username = form.cleaned_data.get("username")
             raw_password = form.cleaned_data.get("password1")
             user = authenticate(username=username, password=raw_password)
-            login(request, user)
+            # login(request, user)
             return redirect(
                 "login",
             )  # redirect to user portfolio view
@@ -190,6 +277,10 @@ def portfolio(request, username):
     except Project.DoesNotExist:
         projects = None
     try:
+        posts = Post.objects.filter(user=user)
+    except Post.DoesNotExist:
+        posts = None
+    try:
         value = Skill.objects.filter(user=user)
         if value:
             skills =  value[0].name.split(", ")
@@ -201,6 +292,7 @@ def portfolio(request, username):
         "user": request.user,
         "user_details": user_details,
         "projects": projects,
+        "posts": posts,
         "skills": skills,
     }
     return render(request, "MainApp/portfolio.html", context)
@@ -229,75 +321,3 @@ def main_nav(request):
         "user": user,
     }
     return render(request, "base.html", context)
-
-
-def projects(request):
-    """projects view function
-
-    Args:
-        request (_object_): django http request
-
-    Returns:
-        _object_: interaction with template
-    """
-    return render(request, "MainApp/projects.html")
-
-
-def case_study(request):
-    """case_study view function
-
-    Args:
-        request (_object_): django http request
-
-    Returns:
-        _object_: interaction with template
-    """
-    return render(request, "MainApp/case-study.html")
-
-
-def blog_home(request):
-    """blog view function
-
-    Args:
-        request (_object_): django http request
-
-    Returns:
-        _object_: interaction with template
-    """
-    return render(request, "MainApp/blog-home.html")
-
-
-def blog_post(request):
-    """blog post view function
-
-    Args:
-        request (_object_): django http request
-
-    Returns:
-        _object_: interaction with template
-    """
-    return render(request, "MainApp/blog-post.html")
-
-
-def resume(request):
-    """resume view function
-
-    Args:
-        request (_object_): django http request
-
-    Returns:
-        _object_: interaction with template
-    """
-    return render(request, "MainApp/resume.html")
-
-
-def contact(request):
-    """contact view function
-
-    Args:
-        request (_object_): django http request
-
-    Returns:
-        _object_: interaction with template
-    """
-    return render(request, "MainApp/contact.html")

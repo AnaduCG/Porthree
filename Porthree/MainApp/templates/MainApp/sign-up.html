@@ -4,9 +4,9 @@
 
 {% block content %}
 <!-- Your signup content goes here -->
-<div class="container">
+<div class="container mb-5">
 
-    <div class="card o-hidden border-0 shadow-lg my-5 w-50 m-auto">
+    <div class="card o-hidden border-0 shadow-lg my-5 w-50 m-auto" style="min-width: 300px;">
         <div class="card-body p-0">
             <!-- Nested Row within Card Body -->
             <div class="row ">
@@ -17,37 +17,51 @@
                             <h1 class="h4 text-gray-900 mb-4">Create a Porthree Account!</h1>
                         </div>
                         <form class="user" method="post">
-                            {% if form.errors %}
+                            {% csrf_token %}
+                            {% if form.non_field_errors %}
                             <div class="alert alert-danger">
-                                {{ form.errors }}
+                                {{ form.non_field_errors.as_ul }}
                             </div>
                             {% endif %}
-                            {% csrf_token %}
-                            <!-- <div class="form-group row">
-                                <div class="col-sm-6 mb-3 mb-sm-0">
-                                    <input type="text" class="form-control form-control-user" id="exampleFirstName"
-                                        placeholder="First Name">
-                                </div>
-                                <div class="col-sm-6">
-                                    <input type="text" class="form-control form-control-user" id="exampleLastName"
-                                        placeholder="Last Name">
-                                </div>
-                            </div> -->
                             <div class="form-group">
+                                {% if form.username.errors %}
+                                <div class="alert alert-danger">
+                                    {{ form.username.errors }}
+                                </div>
+                                {% endif %}
                                 {{form.username}}
+
                             </div>
                             <div class="form-group">
+                                {% if form.email.errors %}
+                                <div class="alert alert-danger">
+                                    {{ form.email.errors }}
+                                </div>
+                                {% endif %}
                                 {{form.email}}
+
                             </div>
-                            <div class="form-group row">
-                                <div class="col-sm-6 mb-3 mb-sm-0">
+                            <div class="form-group d-flex flex-wrap justify-content-center" style="gap: 2px;">
+                                {% if form.password1.errors %}
+                                <div class="alert alert-danger">
+                                    {{ form.password1.errors }}
+                                </div>
+                                {% endif %}
+                                {% if form.password2.errors %}
+                                <div class="alert alert-danger">
+                                    {{ form.password2.errors }}
+                                </div>
+                                {% endif %}
+                                <div class="col">
                                     {{ form.password1.label }}
                                     {{ form.password1 }}
 
                                 </div>
-                                <div class="col-sm-6">
+
+                                <div class="col">
                                     {{ form.password2.label }}
                                     {{ form.password2 }}
+
                                 </div>
                             </div>
                             <button type="submit" class="btn btn-primary btn-user btn-block">
@@ -63,10 +77,10 @@
                         </form>
                         <hr>
                         <div class="text-center">
-                            <a class="small" href="forgot-password.html">Forgot Password?</a>
+                            <a class="small" href="{%url 'password_reset'%}">Forgot Password?</a>
                         </div>
                         <div class="text-center">
-                            <a class="small" href="{%url 'login'%}">Already have an account? Login!</a>
+                            <a class="small" href="{%url 'login'%}">Already in Porthree? Login!</a>
                         </div>
                     </div>
                 </div>

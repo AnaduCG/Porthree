@@ -5,7 +5,7 @@ from django.contrib.auth.models import User
 from django import forms
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 
-from .models import UserDetails, Skill, Project
+from .models import UserDetails, Skill, Project, Post
 
 
 class UserDetailsForm(forms.ModelForm):
@@ -59,6 +59,21 @@ class ProjectForm(forms.ModelForm):
                 attrs={"class": "form-control", "placeholder": "Write about project..."}
             ),
         }
+
+
+class PostForm(forms.ModelForm):
+    class Meta:
+        model = Post
+        fields = ["title", "post_image", "content"]
+
+        widgets = {
+                "title": forms.TextInput(
+                    attrs={"class": "form-control", "placeholder": "Project title here"}
+                ),
+                "content": forms.Textarea(
+                    attrs={"class": "form-control", "placeholder": "Write about project..."}
+                ),
+            }
 
 
 class SignUpForm(UserCreationForm):
