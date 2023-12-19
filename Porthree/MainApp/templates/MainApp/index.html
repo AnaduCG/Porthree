@@ -8,9 +8,9 @@
 <div class="jumbotron">
     <div class="col">
         <div class="container-fluid text-center">
-            <h1 class="display-4 font-weight-bold align-self-start text-dark">Your Personal Portfolio
+            <h1 class="h1 font-weight-bold align-self-start text-dark">Your Personal Portfolio
                 Powerhouse </h1>
-            <p class="h2 w-75 w-100 my-5">Elevate your professional journey with Porthree an intuitive portfolio
+            <p class="h3 w-75 w-100 my-5">Elevate your professional journey with Porthree an intuitive portfolio
                 management
                 platform designed for effortless skill and achievement showcasing. Our user-friendly interface
                 simplifies the process, allowing you to present a polished profile that resonates with employers and
@@ -35,14 +35,14 @@
 <!-- portfolios section -->
 <div class="d-flex flex-wrap justify-content-center">
     <!-- portfolio card -->
-    <a href="">
+    {%for user_detail in user_details|slice:":6"%}
+    <a href="{%url 'portfolio' user_detail.user%}">
         <div class="card shadow-lg py-3 border border-primary m-3" style="width: 300px;">
-            <div class=" d-flex justify-content-center mb-3 "><img
-                    src="{% static 'MainApp/img/undraw_posting_photo.svg' %}" width="150" height="150"
-                    class="rounded-circle" alt=""></div>
+            <div class=" d-flex justify-content-center mb-3 "><img src="{{user_detail.profile_picture.url}}" width="150"
+                    height="150" class="rounded-circle" alt=""></div>
             <div class="container">
-                <div class="h5 font-bold text-center">Anadu Godwin</div>
-                <small class="font-bold">software Engineer</small>
+                <div class="h5 font-bold text-center">{{user_detail}}</div>
+                <small class="font-bold">{{user_detail.career}}</small>
                 <div class="card my-3">
                     <div class="dropdown show">
                         <a class="btn btn-success dropdown-toggle w-100" href="#" role="button" id="dropdownMenuLink"
@@ -56,183 +56,15 @@
                         </div>
                     </div>
                 </div>
-                <p class="text-center">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quidem ad in voluptate
-                    vitae eligendi dicta
-                    laudantium dolorum voluptatum hic ex.</p>
-                <div class="d-flex justify-content-center">
-                    <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400 border mx-1"></i>
-                    <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400 border mx-1"></i>
-                    <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400 border mx-1"></i>
-                    <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400 border mx-1"></i>
+                <p class="text-center">{{user_detail.about_me|truncatechars:100}}</p>
+                <div class="col justify-content-center">
+                    <i class="col">{{user_detail.email}}</i>
+                    <!-- <i class="col">{{user_detail.phone_number}}</i> -->
                 </div>
             </div>
         </div>
     </a>
-    <a href="">
-        <div class="card shadow-lg py-3 border border-primary m-3" style="width: 300px;">
-            <div class=" d-flex justify-content-center mb-3 "><img
-                    src="{% static 'MainApp/img/undraw_posting_photo.svg' %}" width="150" height="150"
-                    class="rounded-circle" alt=""></div>
-            <div class="container">
-                <div class="h5 font-bold text-center">Anadu Godwin</div>
-                <small class="font-bold">software Engineer</small>
-                <div class="card my-3">
-                    <div class="dropdown show">
-                        <a class="btn btn-success dropdown-toggle w-100" href="#" role="button" id="dropdownMenuLink"
-                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            skills
-                        </a>
-                        <div class="dropdown-menu w-100 border border-success" aria-labelledby="dropdownMenuLink">
-                            <a class="dropdown-item" href="#">Action</a>
-                            <a class="dropdown-item" href="#">Another action</a>
-                            <a class="dropdown-item" href="#">Something else here</a>
-                        </div>
-                    </div>
-                </div>
-                <p class="text-center">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quidem ad in voluptate
-                    vitae eligendi dicta
-                    laudantium dolorum voluptatum hic ex.</p>
-                <div class="d-flex justify-content-center">
-                    <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400 border mx-1"></i>
-                    <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400 border mx-1"></i>
-                    <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400 border mx-1"></i>
-                    <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400 border mx-1"></i>
-                </div>
-            </div>
-        </div>
-    </a>
-    <a href="">
-        <div class="card shadow-lg py-3 border border-primary m-3" style="width: 300px;">
-            <div class=" d-flex justify-content-center mb-3 "><img
-                    src="{% static 'MainApp/img/undraw_posting_photo.svg' %}" width="150" height="150"
-                    class="rounded-circle" alt=""></div>
-            <div class="container">
-                <div class="h5 font-bold text-center">Anadu Godwin</div>
-                <small class="font-bold">software Engineer</small>
-                <div class="card my-3">
-                    <div class="dropdown show">
-                        <a class="btn btn-success dropdown-toggle w-100" href="#" role="button" id="dropdownMenuLink"
-                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            skills
-                        </a>
-                        <div class="dropdown-menu w-100 border border-success" aria-labelledby="dropdownMenuLink">
-                            <a class="dropdown-item" href="#">Action</a>
-                            <a class="dropdown-item" href="#">Another action</a>
-                            <a class="dropdown-item" href="#">Something else here</a>
-                        </div>
-                    </div>
-                </div>
-                <p class="text-center">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quidem ad in voluptate
-                    vitae eligendi dicta
-                    laudantium dolorum voluptatum hic ex.</p>
-                <div class="d-flex justify-content-center">
-                    <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400 border mx-1"></i>
-                    <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400 border mx-1"></i>
-                    <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400 border mx-1"></i>
-                    <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400 border mx-1"></i>
-                </div>
-            </div>
-        </div>
-    </a>
-    <a href="">
-        <div class="card shadow-lg py-3 border border-primary m-3" style="width: 300px;">
-            <div class=" d-flex justify-content-center mb-3 "><img
-                    src="{% static 'MainApp/img/undraw_posting_photo.svg' %}" width="150" height="150"
-                    class="rounded-circle" alt=""></div>
-            <div class="container">
-                <div class="h5 font-bold text-center">Anadu Godwin</div>
-                <small class="font-bold">software Engineer</small>
-                <div class="card my-3">
-                    <div class="dropdown show">
-                        <a class="btn btn-success dropdown-toggle w-100" href="#" role="button" id="dropdownMenuLink"
-                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            skills
-                        </a>
-                        <div class="dropdown-menu w-100 border border-success" aria-labelledby="dropdownMenuLink">
-                            <a class="dropdown-item" href="#">Action</a>
-                            <a class="dropdown-item" href="#">Another action</a>
-                            <a class="dropdown-item" href="#">Something else here</a>
-                        </div>
-                    </div>
-                </div>
-                <p class="text-center">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quidem ad in voluptate
-                    vitae eligendi dicta
-                    laudantium dolorum voluptatum hic ex.</p>
-                <div class="d-flex justify-content-center">
-                    <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400 border mx-1"></i>
-                    <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400 border mx-1"></i>
-                    <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400 border mx-1"></i>
-                    <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400 border mx-1"></i>
-                </div>
-            </div>
-        </div>
-    </a>
-    <a href="">
-        <div class="card shadow-lg py-3 border border-primary m-3" style="width: 300px;">
-            <div class=" d-flex justify-content-center mb-3 "><img
-                    src="{% static 'MainApp/img/undraw_posting_photo.svg' %}" width="150" height="150"
-                    class="rounded-circle" alt=""></div>
-            <div class="container">
-                <div class="h5 font-bold text-center">Anadu Godwin</div>
-                <small class="font-bold">software Engineer</small>
-                <div class="card my-3">
-                    <div class="dropdown show">
-                        <a class="btn btn-success dropdown-toggle w-100" href="#" role="button" id="dropdownMenuLink"
-                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            skills
-                        </a>
-                        <div class="dropdown-menu w-100 border border-success" aria-labelledby="dropdownMenuLink">
-                            <a class="dropdown-item" href="#">Action</a>
-                            <a class="dropdown-item" href="#">Another action</a>
-                            <a class="dropdown-item" href="#">Something else here</a>
-                        </div>
-                    </div>
-                </div>
-                <p class="text-center">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quidem ad in voluptate
-                    vitae eligendi dicta
-                    laudantium dolorum voluptatum hic ex.</p>
-                <div class="d-flex justify-content-center">
-                    <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400 border mx-1"></i>
-                    <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400 border mx-1"></i>
-                    <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400 border mx-1"></i>
-                    <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400 border mx-1"></i>
-                </div>
-            </div>
-        </div>
-    </a>
-    <a href="">
-        <div class="card shadow-lg py-3 border border-primary m-3" style="width: 300px;">
-            <div class=" d-flex justify-content-center mb-3 "><img
-                    src="{% static 'MainApp/img/undraw_posting_photo.svg' %}" width="150" height="150"
-                    class="rounded-circle" alt=""></div>
-            <div class="container">
-                <div class="h5 font-bold text-center">Anadu Godwin</div>
-                <small class="font-bold">software Engineer</small>
-                <div class="card my-3">
-                    <div class="dropdown show">
-                        <a class="btn btn-success dropdown-toggle w-100" href="#" role="button" id="dropdownMenuLink"
-                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            skills
-                        </a>
-                        <div class="dropdown-menu w-100 border border-success" aria-labelledby="dropdownMenuLink">
-                            <a class="dropdown-item" href="#">Action</a>
-                            <a class="dropdown-item" href="#">Another action</a>
-                            <a class="dropdown-item" href="#">Something else here</a>
-                        </div>
-                    </div>
-                </div>
-                <p class="text-center">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quidem ad in voluptate
-                    vitae eligendi dicta
-                    laudantium dolorum voluptatum hic ex.</p>
-                <div class="d-flex justify-content-center">
-                    <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400 border mx-1"></i>
-                    <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400 border mx-1"></i>
-                    <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400 border mx-1"></i>
-                    <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400 border mx-1"></i>
-                </div>
-            </div>
-        </div>
-    </a>
+    {%endfor%}
 </div>
 
 
@@ -341,6 +173,7 @@
 
 
 <!-- Posts section -->
+        {%if projects%}
 <div class="col">
     <!-- Page Heading -->
     <div class="d-sm-flex align-items-center justify-content-between mb-4 mt-5">
@@ -350,160 +183,75 @@
     </div>
     <!--  -->
     <div class="container-fluid d-flex flex-wrap w-100 justify-content-center" style="gap: 20px;">
-        <!-- Post card -->
-        <div class="card shadow-lg  mb-4 h-100" style="width: 350px;">
-            <div class="card-header py-3">
-                <h6 class="m-0 font-weight-bold text-primary text-center">Lorem ipsum dolor sit amet consectetur</h6>
-            </div>
-            <div class="card-body p-0 pb-3">
-                <div class="text-center w-100 border"
-                    style="background: url('../../static/MainApp/img/undraw_posting_photo.svg'); height: 200px;background-repeat: no-repeat;background-size: 100%;">
-                </div>
-                <!-- <div class="dropdown-divider"></div> -->
-
-                <div class="container d-flex flex-column p-2" style="gap: 10px;">
-                    <div class="text-bold font-weight-bold text-success">User: Anadu Godwin</div>
-                    <div class="text-bold font-weight-bold text-info">Posted: 2hr ago
+            
+            <!-- project cards container  -->
+            <div class="container-fluid d-flex flex-wrap w-100 justify-content-center" style="gap: 20px;">
+                <!-- project card -->
+                {%for project in projects|slice:":4" %}
+                <a href="#" type="button" data-toggle="modal" data-target="#project{{ project.id }}">
+                    <div class="card shadow" style="width: 350px;">
+                        <div class="card-body p-0 pb-3">
+                            <div class="text-center rounded-top d-flex justify-content-center p-3" style="background: url('../../static/MainApp/img/undraw_posting_photo.svg') rgba(0, 0, 0, 0.514);
+                            height: 200px;background-repeat: no-repeat;background-size: 100%;
+                            background-position: center; width: 349px; background-blend-mode: multiply;"></div>
+                            <div class="container d-flex flex-column p-1 pt-3 px-3" style="gap: 10px;">
+                                <h5 class="mx-1 font-weight-bold text-success text-center text-capitalize align-self-center"
+                                    style="height: 50px;">
+                                    {{project.title|truncatechars:40}}</h5>
+                                <div class="dropdown show">
+                                    <a class="dropdown-toggle h6 font-weight-bold text-gray" href="#" role="button"
+                                        id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true"
+                                        aria-expanded="false">
+                                        Skills
+                                    </a>
+                                    <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                                        <a class="dropdown-item" href="#">Action</a>
+                                        <a class="dropdown-item" href="#">Another action</a>
+                                        <a class="dropdown-item" href="#">Something else here</a>
+                                    </div>
+                                </div>
+                                <div class="text-bold font-weight-bold">Created: {{project.created_at}}
+                                </div>
+                                <div class="text-bold font-weight-bold"> By: <a class="text-capitalize"
+                                        href="{%url 'portfolio' project.user%}">{{project.user}}</a></div>
+                            </div>
+                        </div>
                     </div>
-                    <div class="d-flex justify-content-between w-100">
-                        <div class="dropdown show w-100">
-                            <a class="btn btn-success dropdown-toggle w-100" href="#" role="button"
-                                id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                Tools
-                            </a>
-                            <div class="dropdown-menu  w-100" aria-labelledby="dropdownMenuLink">
-                                <a class="dropdown-item" href="#">Action</a>
-                                <a class="dropdown-item" href="#">Another action</a>
-                                <a class="dropdown-item" href="#">Something else here</a>
+                </a>
+                <!-- projects modal -->
+                <!-- Modal -->
+                <div class="modal fade" id="project{{ project.id }}" tabindex="-1" role="dialog"
+                    aria-labelledby="projectTitle" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title text-capitalize" id="projectTitle">{{project.title}}</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                {{project.about|safe}}
+                            </div>
+                            <div class="modal-footer">
+                                {%if user.is_authenticated%}
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                <button type="button" class="btn btn-primary">Save changes</button>
+                                {%endif%}
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="dropdown-divider"></div>
-                <p class="p-2">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quaerat officia aliquam nostrum
-                    recusandae quidem quos mollitia maxime distinctio odio officiis.</p>
-                <div class="dropdown-divider"></div>
-                <a href="https://undraw.co/" rel="nofollow" class="p-2">See project &rarr;</a>
-
+                {%endfor%}
+            <div class="text-primary d-flex justify-content-end">
+                <a rel="nofollow" href="#">See more Projects &rarr;</a>
             </div>
         </div>
-        <!-- Post card -->
-        <div class="card shadow-lg  mb-4 h-100" style="width: 350px;">
-            <div class="card-header py-3">
-                <h6 class="m-0 font-weight-bold text-primary text-center">Lorem ipsum dolor sit amet consectetur</h6>
-            </div>
-            <div class="card-body p-0 pb-3">
-                <div class="text-center w-100 border"
-                    style="background: url('../../static/MainApp/img/undraw_posting_photo.svg'); height: 200px;background-repeat: no-repeat;background-size: 100%;">
-                </div>
-                <!-- <div class="dropdown-divider"></div> -->
-
-                <div class="container d-flex flex-column p-2" style="gap: 10px;">
-                    <div class="text-bold font-weight-bold text-success">User: Anadu Godwin</div>
-                    <div class="text-bold font-weight-bold text-info">Posted: 2hr ago
-                    </div>
-                    <div class="d-flex justify-content-between w-100">
-                        <div class="dropdown show w-100">
-                            <a class="btn btn-success dropdown-toggle w-100" href="#" role="button"
-                                id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                Tools
-                            </a>
-                            <div class="dropdown-menu  w-100" aria-labelledby="dropdownMenuLink">
-                                <a class="dropdown-item" href="#">Action</a>
-                                <a class="dropdown-item" href="#">Another action</a>
-                                <a class="dropdown-item" href="#">Something else here</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="dropdown-divider"></div>
-                <p class="p-2">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quaerat officia aliquam nostrum
-                    recusandae quidem quos mollitia maxime distinctio odio officiis.</p>
-                <div class="dropdown-divider"></div>
-                <a href="https://undraw.co/" rel="nofollow" class="p-2">See project &rarr;</a>
-
-            </div>
-        </div>
-        <!-- Post card -->
-        <div class="card shadow-lg  mb-4 h-100" style="width: 350px;">
-            <div class="card-header py-3">
-                <h6 class="m-0 font-weight-bold text-primary text-center">Lorem ipsum dolor sit amet consectetur</h6>
-            </div>
-            <div class="card-body p-0 pb-3">
-                <div class="text-center w-100 border"
-                    style="background: url('../../static/MainApp/img/undraw_posting_photo.svg'); height: 200px;background-repeat: no-repeat;background-size: 100%;">
-                </div>
-                <!-- <div class="dropdown-divider"></div> -->
-
-                <div class="container d-flex flex-column p-2" style="gap: 10px;">
-                    <div class="text-bold font-weight-bold text-success">User: Anadu Godwin</div>
-                    <div class="text-bold font-weight-bold text-info">Posted: 2hr ago
-                    </div>
-                    <div class="d-flex justify-content-between w-100">
-                        <div class="dropdown show w-100">
-                            <a class="btn btn-success dropdown-toggle w-100" href="#" role="button"
-                                id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                Tools
-                            </a>
-                            <div class="dropdown-menu  w-100" aria-labelledby="dropdownMenuLink">
-                                <a class="dropdown-item" href="#">Action</a>
-                                <a class="dropdown-item" href="#">Another action</a>
-                                <a class="dropdown-item" href="#">Something else here</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="dropdown-divider"></div>
-                <p class="p-2">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quaerat officia aliquam nostrum
-                    recusandae quidem quos mollitia maxime distinctio odio officiis.</p>
-                <div class="dropdown-divider"></div>
-                <a href="https://undraw.co/" rel="nofollow" class="p-2">See project &rarr;</a>
-
-            </div>
-        </div>
-        <!-- Post card -->
-        <div class="card shadow-lg  mb-4 h-100" style="width: 350px;">
-            <div class="card-header py-3">
-                <h6 class="m-0 font-weight-bold text-primary text-center">Lorem ipsum dolor sit amet consectetur</h6>
-            </div>
-            <div class="card-body p-0 pb-3">
-                <div class="text-center w-100 border"
-                    style="background: url('../../static/MainApp/img/undraw_posting_photo.svg'); height: 200px;background-repeat: no-repeat;background-size: 100%;">
-                </div>
-                <!-- <div class="dropdown-divider"></div> -->
-
-                <div class="container d-flex flex-column p-2" style="gap: 10px;">
-                    <div class="text-bold font-weight-bold text-success">User: Anadu Godwin</div>
-                    <div class="text-bold font-weight-bold text-info">Posted: 2hr ago
-                    </div>
-                    <div class="d-flex justify-content-between w-100">
-                        <div class="dropdown show w-100">
-                            <a class="btn btn-success dropdown-toggle w-100" href="#" role="button"
-                                id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                Tools
-                            </a>
-                            <div class="dropdown-menu  w-100" aria-labelledby="dropdownMenuLink">
-                                <a class="dropdown-item" href="#">Action</a>
-                                <a class="dropdown-item" href="#">Another action</a>
-                                <a class="dropdown-item" href="#">Something else here</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="dropdown-divider"></div>
-                <p class="p-2">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quaerat officia aliquam nostrum
-                    recusandae quidem quos mollitia maxime distinctio odio officiis.</p>
-                <div class="dropdown-divider"></div>
-                <a href="https://undraw.co/" rel="nofollow" class="p-2">See project &rarr;</a>
-            </div>
-        </div>
-    </div>
-    <div class="text-primary d-flex justify-content-end">
-        <a rel="nofollow" href="https://undraw.co/">See All Projects &rarr;</a>
-    </div>
 </div>
+        {%endif%}
 
 <!-- Posts section -->
+{%if posts%}
 <div class="col">
     <!-- Page Heading -->
     <div class="d-sm-flex align-items-center justify-content-between mb-4 mt-5">
@@ -514,157 +262,57 @@
     <!--  -->
     <div class="container-fluid d-flex flex-wrap w-100 justify-content-center" style="gap: 20px;">
         <!-- Post card -->
-        <div class="card shadow-lg  mb-4 h-100" style="width: 350px;">
-            <div class="card-header py-3">
-                <h6 class="m-0 font-weight-bold text-primary text-center">Lorem ipsum dolor sit amet consectetur</h6>
-            </div>
-            <div class="card-body p-0 pb-3">
-                <div class="text-center w-100 border"
-                    style="background: url('../../static/MainApp/img/undraw_posting_photo.svg'); height: 200px;background-repeat: no-repeat;background-size: 100%;">
-                </div>
-                <!-- <div class="dropdown-divider"></div> -->
 
-                <div class="container d-flex flex-column p-2" style="gap: 10px;">
-                    <div class="text-bold font-weight-bold text-success">User: Anadu Godwin</div>
-                    <div class="text-bold font-weight-bold text-info">Posted: 2hr ago
-                    </div>
-                    <div class="d-flex justify-content-between w-100">
-                        <div class="dropdown show w-100">
-                            <a class="btn btn-success dropdown-toggle w-100" href="#" role="button"
-                                id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                Tools
-                            </a>
-                            <div class="dropdown-menu  w-100" aria-labelledby="dropdownMenuLink">
-                                <a class="dropdown-item" href="#">Action</a>
-                                <a class="dropdown-item" href="#">Another action</a>
-                                <a class="dropdown-item" href="#">Something else here</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="dropdown-divider"></div>
-                <p class="p-2">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quaerat officia aliquam nostrum
-                    recusandae quidem quos mollitia maxime distinctio odio officiis.</p>
-                <div class="dropdown-divider"></div>
-                <a href="https://undraw.co/" rel="nofollow" class="p-2">See project &rarr;</a>
-
-            </div>
-        </div>
         <!-- Post card -->
-        <div class="card shadow-lg  mb-4 h-100" style="width: 350px;">
-            <div class="card-header py-3">
-                <h6 class="m-0 font-weight-bold text-primary text-center">Lorem ipsum dolor sit amet consectetur</h6>
-            </div>
-            <div class="card-body p-0 pb-3">
-                <div class="text-center w-100 border"
-                    style="background: url('../../static/MainApp/img/undraw_posting_photo.svg'); height: 200px;background-repeat: no-repeat;background-size: 100%;">
-                </div>
-                <!-- <div class="dropdown-divider"></div> -->
-
-                <div class="container d-flex flex-column p-2" style="gap: 10px;">
-                    <div class="text-bold font-weight-bold text-success">User: Anadu Godwin</div>
-                    <div class="text-bold font-weight-bold text-info">Posted: 2hr ago
+        {%for post in posts|slice:":8" %}
+        <a href="{%url 'post-detail' post.slug %}" rel="nofollow">
+            <div class="card shadow" style="width: 350px;">
+                <div class="card-body p-0 pb-3">
+                    {%if post.post_image%}
+                    <div class="text-center w-100  rounded-top d-flex justify-content-center p-3" style="background: url('{{ post.post_image.url }}') rgba(0, 0, 0, 0.514);
+                            height: 200px;background-repeat: no-repeat;background-size: 100%;
+                            background-position: center; background-blend-mode: multiply;">
                     </div>
-                    <div class="d-flex justify-content-between w-100">
-                        <div class="dropdown show w-100">
-                            <a class="btn btn-success dropdown-toggle w-100" href="#" role="button"
+                    {%else%}
+                    <div class="text-center w-100  rounded-top d-flex justify-content-center p-3" style="background: url('../../static/MainApp/img/undraw_posting_photo.svg') rgba(0, 0, 0, 0.514);
+                            height: 200px;background-repeat: no-repeat;background-size: 100%;
+                            background-position: center; background-blend-mode: multiply;">
+
+                    </div>
+                    {%endif%}
+                    <!-- <div class="dropdown-divider"></div> -->
+
+                    <div class="container d-flex flex-column p-1 pt-3 px-3" style="gap: 10px;">
+                        <h5 class="mx-1 font-weight-bold text-success text-center text-capitalize align-self-center"
+                            style="height: 50px;">
+                            {{post.title|truncatechars:40}}</h5>
+                        <div class="text-bold font-weight-bold"> By: <a class="text-capitalize"
+                                href="{%url 'portfolio' post.user%}">{{post.user}}</a></div>
+                        <div class="dropdown show">
+                            <a class="dropdown-toggle h6 font-weight-bold text-gray" href="#" role="button"
                                 id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                Tools
+                                Tags
                             </a>
-                            <div class="dropdown-menu  w-100" aria-labelledby="dropdownMenuLink">
+                            <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
                                 <a class="dropdown-item" href="#">Action</a>
                                 <a class="dropdown-item" href="#">Another action</a>
                                 <a class="dropdown-item" href="#">Something else here</a>
                             </div>
                         </div>
-                    </div>
-                </div>
-                <div class="dropdown-divider"></div>
-                <p class="p-2">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quaerat officia aliquam nostrum
-                    recusandae quidem quos mollitia maxime distinctio odio officiis.</p>
-                <div class="dropdown-divider"></div>
-                <a href="https://undraw.co/" rel="nofollow" class="p-2">See project &rarr;</a>
-
-            </div>
-        </div>
-        <!-- Post card -->
-        <div class="card shadow-lg  mb-4 h-100" style="width: 350px;">
-            <div class="card-header py-3">
-                <h6 class="m-0 font-weight-bold text-primary text-center">Lorem ipsum dolor sit amet consectetur</h6>
-            </div>
-            <div class="card-body p-0 pb-3">
-                <div class="text-center w-100 border"
-                    style="background: url('../../static/MainApp/img/undraw_posting_photo.svg'); height: 200px;background-repeat: no-repeat;background-size: 100%;">
-                </div>
-                <!-- <div class="dropdown-divider"></div> -->
-
-                <div class="container d-flex flex-column p-2" style="gap: 10px;">
-                    <div class="text-bold font-weight-bold text-success">User: Anadu Godwin</div>
-                    <div class="text-bold font-weight-bold text-info">Posted: 2hr ago
-                    </div>
-                    <div class="d-flex justify-content-between w-100">
-                        <div class="dropdown show w-100">
-                            <a class="btn btn-success dropdown-toggle w-100" href="#" role="button"
-                                id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                Tools
-                            </a>
-                            <div class="dropdown-menu  w-100" aria-labelledby="dropdownMenuLink">
-                                <a class="dropdown-item" href="#">Action</a>
-                                <a class="dropdown-item" href="#">Another action</a>
-                                <a class="dropdown-item" href="#">Something else here</a>
-                            </div>
+                        <div class="text-bold font-weight-bold">Posted: {{post.created_at}}
                         </div>
+
                     </div>
                 </div>
-                <div class="dropdown-divider"></div>
-                <p class="p-2">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quaerat officia aliquam nostrum
-                    recusandae quidem quos mollitia maxime distinctio odio officiis.</p>
-                <div class="dropdown-divider"></div>
-                <a href="https://undraw.co/" rel="nofollow" class="p-2">See project &rarr;</a>
-
             </div>
-        </div>
-        <!-- Post card -->
-        <div class="card shadow-lg  mb-4 h-100" style="width: 350px;">
-            <div class="card-header py-3">
-                <h6 class="m-0 font-weight-bold text-primary text-center">Lorem ipsum dolor sit amet consectetur</h6>
-            </div>
-            <div class="card-body p-0 pb-3">
-                <div class="text-center w-100 border"
-                    style="background: url('../../static/MainApp/img/undraw_posting_photo.svg'); height: 200px;background-repeat: no-repeat;background-size: 100%;">
-                </div>
-                <!-- <div class="dropdown-divider"></div> -->
+        </a>
 
-                <div class="container d-flex flex-column p-2" style="gap: 10px;">
-                    <div class="text-bold font-weight-bold text-success">User: Anadu Godwin</div>
-                    <div class="text-bold font-weight-bold text-info">Posted: 2hr ago
-                    </div>
-                    <div class="d-flex justify-content-between w-100">
-                        <div class="dropdown show w-100">
-                            <a class="btn btn-success dropdown-toggle w-100" href="#" role="button"
-                                id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                Tools
-                            </a>
-                            <div class="dropdown-menu  w-100" aria-labelledby="dropdownMenuLink">
-                                <a class="dropdown-item" href="#">Action</a>
-                                <a class="dropdown-item" href="#">Another action</a>
-                                <a class="dropdown-item" href="#">Something else here</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="dropdown-divider"></div>
-                <p class="p-2">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quaerat officia aliquam nostrum
-                    recusandae quidem quos mollitia maxime distinctio odio officiis.</p>
-                <div class="dropdown-divider"></div>
-                <a href="https://undraw.co/" rel="nofollow" class="p-2">See project &rarr;</a>
+        {%endfor%}
 
-            </div>
-        </div>
     </div>
     <div class="text-primary d-flex justify-content-end">
         <a rel="nofollow" href="https://undraw.co/">See All Projects &rarr;</a>
     </div>
 </div>
-
+{%endif%}
 {% endblock %}

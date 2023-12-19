@@ -18,7 +18,26 @@ def index(request):
     Returns:
         _object_: interaction with template
     """
-    context = {}
+    try:
+        # Check if data already exists for the current user
+        user_details = UserDetails.objects.all()
+    except UserDetails.DoesNotExist:
+        user_details = None
+    try:
+        # Check if data already exists for the current user
+        posts = Post.objects.all()
+    except Post.DoesNotExist:
+        posts = None
+    try:
+        # Check if data already exists for the current user
+        projects = Project.objects.all()
+    except Project.DoesNotExist:
+        projects = None
+    context = {
+        "user_details": user_details,
+        "posts": posts,
+        "projects": projects,
+        }
     return render(request, "MainApp/index.html", context)
 
 
@@ -131,8 +150,13 @@ def create_project(request, project_id=None):
             form = ProjectForm()
 
     projects = Project.objects.filter(user=user)  # Retrieve all projects for display
+    user_details = UserDetails.objects.filter(user=user)  # Retrieve all projects for display
 
-    context = {"form": form, "projects": projects}
+    context = {
+        "form": form,
+        "projects": projects,
+        "user_details": user_details,
+        }
     return render(request, "MainApp/create-project.html", context)
 
 @login_required
@@ -175,13 +199,18 @@ def create_post(request, post_id=None):
             form = PostForm()
 
     posts = Post.objects.filter(user=user)  # Retrieve all posts for display
+    user_details = UserDetails.objects.filter(user=user)  # Retrieve all user details for display
 
-    context = {"form": form, "posts": posts}
+    context = {
+        "form": form,
+        "posts": posts,
+        "user_details": user_details,
+        }
     return render(request, "MainApp/create-post.html", context)
 
 def post_detail(request, slug):
     """
-    this view manages the display of dpecific post content
+    this view manages the display of a pecific post content
     """
     post = get_object_or_404(Post, slug=slug)
     user = request.user
