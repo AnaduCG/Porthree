@@ -28,7 +28,9 @@ class UserDetails(models.Model):
     last_name = models.CharField(max_length=255)
     about_me = models.TextField(null=True, blank=True)
     resume = models.FileField(upload_to="resumes/", null=True, blank=True)
-    profile_picture = models.ImageField(upload_to="profile_pictures/", null=True, blank=True)
+    profile_picture = models.ImageField(
+        upload_to="profile_pictures/", null=True, blank=True
+    )
 
     def __str__(self):
         return f"{self.first_name} {self.last_name}"
@@ -63,7 +65,7 @@ class Post(models.Model):
     slug = models.SlugField(max_length=255, unique=True, null=False, blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
-    post_image = models.ImageField(upload_to='post_images/', null=True, blank=True)
+    post_image = models.ImageField(upload_to="post_images/", null=True, blank=True)
     content = RichTextField()
     like = models.BooleanField(default=False, null=True, blank=True)
     shared = models.BooleanField(default=False)
@@ -180,10 +182,8 @@ class Project(models.Model):
         default=0, validators=[MaxValueValidator(5)], null=True, blank=True
     )
 
-
     def save(self, *args, **kwargs):
-        """convert a a title to slug
-        """
+        """convert a a title to slug"""
         if not self.slug:
             self.slug = slugify(self.title)
         super().save(*args, **kwargs)

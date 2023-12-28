@@ -42,12 +42,13 @@
 
     <div class="card shadow-lg py-3 border border-primary m-3 h-100" style="width: 300px;">
         {% if user_detail.profile_picture %}
-        <div class=" d-flex justify-content-center mb-3 "><img src="{{user_detail.profile_picture.url}}" width="150"
-                height="150" class="rounded-circle" alt=""></div>
+        <div class=" d-flex justify-content-center mb-3 ">
+            <img src="{{user_detail.profile_picture.url}}" width="150" height="150" class="rounded-circle border border-primary shadow" alt="">
+        </div>
         {% endif %}
         <div class="container text-center">
             <div class="h5 font-bold">
-                <a href="{%url 'portfolio' user_detail.user%}">{{user_detail}}</a>
+                <a href="{%url 'portfolio' user_detail.user%}">{{user_detail|title}}</a>
             </div>
             <small class=" text-primary font-weight-bold">@{{user_detail.user}}</small>
             <small class="font-bold text-dark">{{user_detail.career_title}}</small>
@@ -188,16 +189,16 @@
     <div class="d-sm-flex align-items-center justify-content-between mb-4 mt-5">
         <h1 class="mb-auto text-gray-800 mb-primary h2 border-bottom border-primary pr-5 font-weight-bold">
             Featured Projects</h1>
-
     </div>
     <div class="card-columns">
 
         {% for project in projects %}
-        <div class="card border shadow" style="cursor: pointer;" data-toggle="modal"
-            data-target="#project{{project.id}}">
+        <div class="card border shadow">
             <!-- <img class="card-img-top" src="../../static/MainApp/img/undraw_posting_photo.svg" alt="Project image"> -->
             <div class="card-body text-center p-3">
-                <h5 class="card-title"><strong>{{project.title|truncatechars:40}}</strong></h5>
+                <h5 class="card-title" data-toggle="modal" data-target="#project{{project.id}}" style="cursor: pointer;">
+                    <strong>{{project.title|title|truncatechars:40}}</strong>
+                </h5>
                 <p class="card-text">{{project.about|truncatechars:100|safe}}</p>
                 <!-- <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p> -->
                 <div class="row">
@@ -219,7 +220,7 @@
                         </div>
                     </div>
                     <div class="col-sm">
-                        <small class="text-muted font-weight-bold">{{project.created_at}}</small>
+                        <small class="text-muted font-weight-bold">{{project.created_at|timesince}} ago</small>
                     </div>
                 </div>
             </div>
@@ -227,7 +228,7 @@
         <!-- project modal -->
         <div class="modal fade" id="project{{project.id}}" tabindex="-1" role="dialog"
             aria-labelledby="exampleModalLongTitle" aria-hidden="true">
-            <div class="modal-dialog" role="document" style="overflow-y: scroll; max-height: 90vh;">
+            <div class="modal-dialog rounded" role="document" style="overflow-y: scroll; max-height: 90vh;">
                 <div class="modal-content">
                     <div class="modal-header">
                         <h5 class="modal-title font-weight-bold" id="exampleModalLongTitle">{{project.title}}</h5>
@@ -274,7 +275,7 @@
 
                 <div class="card-body text-center p-3">
                     <h4 class="card-title font-weight-bold"><a
-                            href="{% url 'post-detail' post.slug %}">{{post.title|truncatechars:40}}</a></h4>
+                            href="{% url 'post-detail' post.slug %}">{{post.title|title|truncatechars:40}}</a></h4>
                     <p class="card-text">{{post.content|truncatechars:100|safe}}</p>
                     <!-- <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p> -->
                     <div class="row">
@@ -297,7 +298,7 @@
                             </div>
                         </div>
                         <div class="col-sm">
-                            <small class="text-muted font-weight-bold">{{post.created_at}}</small>
+                            <small class="text-muted font-weight-bold">{{post.created_at|timesince}} ago</small>
                         </div>
                     </div>
                 </div>

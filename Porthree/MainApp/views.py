@@ -20,17 +20,17 @@ def index(request):
     """
     try:
         # Check if data already exists for the current user
-        user_details = UserDetails.objects.all()
+        user_details = UserDetails.objects.all().order_by("?")
     except UserDetails.DoesNotExist:
         user_details = None
     try:
         # Check if data already exists for the current user
-        posts = Post.objects.all()
+        posts = Post.objects.all().order_by("-created_at")
     except Post.DoesNotExist:
         posts = None
     try:
         # Check if data already exists for the current user
-        projects = Project.objects.all()
+        projects = Project.objects.all().order_by("-created_at")
     except Project.DoesNotExist:
         projects = None
     context = {
@@ -273,11 +273,11 @@ def portfolio(request, username):
     except UserDetails.DoesNotExist:
         user_details = None
     try:
-        projects = Project.objects.filter(user=user)
+        projects = Project.objects.filter(user=user).order_by("-created_at")
     except Project.DoesNotExist:
         projects = None
     try:
-        posts = Post.objects.filter(user=user)
+        posts = Post.objects.filter(user=user).order_by("-created_at")
     except Post.DoesNotExist:
         posts = None
     try:
