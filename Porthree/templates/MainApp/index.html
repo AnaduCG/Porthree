@@ -33,13 +33,18 @@
 
 </div>
 <!-- portfolios section -->
+
+{% if user_details %}
+
 <div class="d-flex flex-wrap justify-content-center">
     <!-- portfolio card -->
     {%for user_detail in user_details|slice:":6"%}
     <a href="{%url 'portfolio' user_detail.user%}">
-        <div class="card shadow-lg py-3 border border-primary m-3" style="width: 300px;">
+        <div class="card shadow-lg py-3 border border-primary m-3 h-100" style="width: 300px;">
+            {% if user_detail.profile_picture %}
             <div class=" d-flex justify-content-center mb-3 "><img src="{{user_detail.profile_picture.url}}" width="150"
                     height="150" class="rounded-circle" alt=""></div>
+            {% endif %}
             <div class="container">
                 <div class="h5 font-bold text-center">{{user_detail}}</div>
                 <small class="font-bold">{{user_detail.career}}</small>
@@ -66,6 +71,7 @@
     </a>
     {%endfor%}
 </div>
+{% endif %}
 
 
 <!-- porthree about section -->
@@ -172,8 +178,8 @@
 <!-- end of porthree feature section -->
 
 
-<!-- Posts section -->
-        {%if projects%}
+<!-- Project section -->
+{%if projects%}
 <div class="col">
     <!-- Page Heading -->
     <div class="d-sm-flex align-items-center justify-content-between mb-4 mt-5">
@@ -181,117 +187,26 @@
             Featured Projects</h1>
 
     </div>
-    <!--  -->
-    <div class="container-fluid d-flex flex-wrap w-100 justify-content-center" style="gap: 20px;">
-            
-            <!-- project cards container  -->
-            <div class="container-fluid d-flex flex-wrap w-100 justify-content-center" style="gap: 20px;">
-                <!-- project card -->
-                {%for project in projects|slice:":4" %}
-                <a href="#" type="button" data-toggle="modal" data-target="#project{{ project.id }}">
-                    <div class="card shadow" style="width: 350px;">
-                        <div class="card-body p-0 pb-3">
-                            <div class="text-center rounded-top d-flex justify-content-center p-3" style="background: url('../../static/MainApp/img/undraw_posting_photo.svg') rgba(0, 0, 0, 0.514);
-                            height: 200px;background-repeat: no-repeat;background-size: 100%;
-                            background-position: center; width: 349px; background-blend-mode: multiply;"></div>
-                            <div class="container d-flex flex-column p-1 pt-3 px-3" style="gap: 10px;">
-                                <h5 class="mx-1 font-weight-bold text-success text-center text-capitalize align-self-center"
-                                    style="height: 50px;">
-                                    {{project.title|truncatechars:40}}</h5>
-                                <div class="dropdown show">
-                                    <a class="dropdown-toggle h6 font-weight-bold text-gray" href="#" role="button"
-                                        id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true"
-                                        aria-expanded="false">
-                                        Skills
-                                    </a>
-                                    <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                                        <a class="dropdown-item" href="#">Action</a>
-                                        <a class="dropdown-item" href="#">Another action</a>
-                                        <a class="dropdown-item" href="#">Something else here</a>
-                                    </div>
-                                </div>
-                                <div class="text-bold font-weight-bold">Created: {{project.created_at}}
-                                </div>
-                                <div class="text-bold font-weight-bold"> By: <a class="text-capitalize"
-                                        href="{%url 'portfolio' project.user%}">{{project.user}}</a></div>
-                            </div>
-                        </div>
+    <div class="card-columns">
+
+        {% for project in projects %}
+        <div class="card border shadow" style="cursor: pointer;" data-toggle="modal"
+            data-target="#project{{project.id}}">
+            <!-- <img class="card-img-top" src="../../static/MainApp/img/undraw_posting_photo.svg" alt="Project image"> -->
+            <div class="card-body text-center p-3">
+                <h5 class="card-title"><strong>{{project.title|truncatechars:40}}</strong></h5>
+                <p class="card-text">{{project.about|truncatechars:100|safe}}</p>
+                <!-- <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p> -->
+                <div class="row">
+                    <div class="col-sm">
+                        <a href="{%url 'portfolio' project.user%}"><img src="{{project.user.profile_picture}}"
+                                class="avatar" alt=""><strong class="text-capitalize">{{project.user}}</strong></a>
                     </div>
-                </a>
-                <!-- projects modal -->
-                <!-- Modal -->
-                <div class="modal fade" id="project{{ project.id }}" tabindex="-1" role="dialog"
-                    aria-labelledby="projectTitle" aria-hidden="true">
-                    <div class="modal-dialog modal-dialog-centered" role="document">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title text-capitalize" id="projectTitle">{{project.title}}</h5>
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                    <span aria-hidden="true">&times;</span>
-                                </button>
-                            </div>
-                            <div class="modal-body">
-                                {{project.about|safe}}
-                            </div>
-                            <div class="modal-footer">
-                                {%if user.is_authenticated%}
-                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                <button type="button" class="btn btn-primary">Save changes</button>
-                                {%endif%}
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                {%endfor%}
-            <div class="text-primary d-flex justify-content-end">
-                <a rel="nofollow" href="#">See more Projects &rarr;</a>
-            </div>
-        </div>
-</div>
-        {%endif%}
-
-<!-- Posts section -->
-{%if posts%}
-<div class="col">
-    <!-- Page Heading -->
-    <div class="d-sm-flex align-items-center justify-content-between mb-4 mt-5">
-        <h1 class="mb-auto text-gray-800 mb-primary h2 border-bottom border-primary pr-5 font-weight-bold">
-            Featured Posts</h1>
-
-    </div>
-    <!--  -->
-    <div class="container-fluid d-flex flex-wrap w-100 justify-content-center" style="gap: 20px;">
-        <!-- Post card -->
-
-        <!-- Post card -->
-        {%for post in posts|slice:":8" %}
-        <a href="{%url 'post-detail' post.slug %}" rel="nofollow">
-            <div class="card shadow" style="width: 350px;">
-                <div class="card-body p-0 pb-3">
-                    {%if post.post_image%}
-                    <div class="text-center w-100  rounded-top d-flex justify-content-center p-3" style="background: url('{{ post.post_image.url }}') rgba(0, 0, 0, 0.514);
-                            height: 200px;background-repeat: no-repeat;background-size: 100%;
-                            background-position: center; background-blend-mode: multiply;">
-                    </div>
-                    {%else%}
-                    <div class="text-center w-100  rounded-top d-flex justify-content-center p-3" style="background: url('../../static/MainApp/img/undraw_posting_photo.svg') rgba(0, 0, 0, 0.514);
-                            height: 200px;background-repeat: no-repeat;background-size: 100%;
-                            background-position: center; background-blend-mode: multiply;">
-
-                    </div>
-                    {%endif%}
-                    <!-- <div class="dropdown-divider"></div> -->
-
-                    <div class="container d-flex flex-column p-1 pt-3 px-3" style="gap: 10px;">
-                        <h5 class="mx-1 font-weight-bold text-success text-center text-capitalize align-self-center"
-                            style="height: 50px;">
-                            {{post.title|truncatechars:40}}</h5>
-                        <div class="text-bold font-weight-bold"> By: <a class="text-capitalize"
-                                href="{%url 'portfolio' post.user%}">{{post.user}}</a></div>
+                    <div class="col-sm">
                         <div class="dropdown show">
                             <a class="dropdown-toggle h6 font-weight-bold text-gray" href="#" role="button"
                                 id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                Tags
+                                Tools
                             </a>
                             <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
                                 <a class="dropdown-item" href="#">Action</a>
@@ -299,20 +214,92 @@
                                 <a class="dropdown-item" href="#">Something else here</a>
                             </div>
                         </div>
-                        <div class="text-bold font-weight-bold">Posted: {{post.created_at}}
-                        </div>
-
+                    </div>
+                    <div class="col-sm">
+                        <small class="text-muted font-weight-bold">{{project.created_at}}</small>
                     </div>
                 </div>
             </div>
-        </a>
+        </div>
 
-        {%endfor%}
+        <div class="modal fade" id="project{{project.id}}" tabindex="-1" role="dialog"
+            aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+            <div class="modal-dialog" role="document" style="overflow-y: scroll; max-height: 90vh;">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title font-weight-bold" id="exampleModalLongTitle">{{project.title}}</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        {{project.about}}
+                    </div>
+                    <div class="modal-footer">
+                        <!-- <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                  <button type="button" class="btn btn-primary">Save changes</button> -->
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    {%endif%}
 
+    <!-- Posts section -->
+    {%if posts%}
+    <div class="col">
+        <!-- Page Heading -->
+        <div class="d-sm-flex align-items-center justify-content-between mb-4 mt-5">
+            <h1 class="mb-auto text-gray-800 mb-primary h2 border-bottom border-primary pr-5 font-weight-bold">
+                Featured Posts</h1>
+
+        </div>
+        <!--  -->
+        <div class="card-columns">
+
+            {% for post in posts %}
+            <div class="card border border-primary shadow">
+
+                {% if post.post_image %}
+
+                <img class="card-img-top" src="{{post.post_image.url}}" alt="post image">
+                {% endif %}
+
+                <div class="card-body text-center p-3">
+                    <h4 class="card-title font-weight-bold"><a href="{% url 'post-detail' post.slug %}">{{post.title|truncatechars:40}}</a></h4>
+                    <p class="card-text">{{post.content|truncatechars:100|safe}}</p>
+                    <!-- <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p> -->
+                    <div class="row">
+                        <div class="col-sm">
+                            <a href="{%url 'portfolio' post.user%}"><img src="{{post.user.profile_picture}}"
+                                    class="avatar" alt=""><strong class="text-capitalize">{{post.user}}</strong></a>
+                        </div>
+                        <div class="col-sm">
+                            <div class="dropdown show">
+                                <a class="dropdown-toggle h6 font-weight-bold text-gray" href="#" role="button"
+                                    id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true"
+                                    aria-expanded="false">
+                                    Tags
+                                </a>
+                                <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                                    <a class="dropdown-item" href="#">Action</a>
+                                    <a class="dropdown-item" href="#">Another action</a>
+                                    <a class="dropdown-item" href="#">Something else here</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm">
+                            <small class="text-muted font-weight-bold">{{post.created_at}}</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        <div class="text-primary d-flex justify-content-end">
+            <a rel="nofollow" href="https://undraw.co/">See All posts &rarr;</a>
+        </div>
     </div>
-    <div class="text-primary d-flex justify-content-end">
-        <a rel="nofollow" href="https://undraw.co/">See All Projects &rarr;</a>
-    </div>
-</div>
-{%endif%}
-{% endblock %}
+    {%endif%}
+    {% endblock %}
