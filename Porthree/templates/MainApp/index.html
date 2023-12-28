@@ -39,36 +39,39 @@
 <div class="d-flex flex-wrap justify-content-center">
     <!-- portfolio card -->
     {%for user_detail in user_details|slice:":6"%}
-    <a href="{%url 'portfolio' user_detail.user%}">
-        <div class="card shadow-lg py-3 border border-primary m-3 h-100" style="width: 300px;">
-            {% if user_detail.profile_picture %}
-            <div class=" d-flex justify-content-center mb-3 "><img src="{{user_detail.profile_picture.url}}" width="150"
-                    height="150" class="rounded-circle" alt=""></div>
-            {% endif %}
-            <div class="container">
-                <div class="h5 font-bold text-center">{{user_detail}}</div>
-                <small class="font-bold">{{user_detail.career}}</small>
-                <div class="card my-3">
-                    <div class="dropdown show">
-                        <a class="btn btn-success dropdown-toggle w-100" href="#" role="button" id="dropdownMenuLink"
-                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            skills
-                        </a>
-                        <div class="dropdown-menu w-100 border border-success" aria-labelledby="dropdownMenuLink">
-                            <a class="dropdown-item" href="#">Action</a>
-                            <a class="dropdown-item" href="#">Another action</a>
-                            <a class="dropdown-item" href="#">Something else here</a>
-                        </div>
+
+    <div class="card shadow-lg py-3 border border-primary m-3 h-100" style="width: 300px;">
+        {% if user_detail.profile_picture %}
+        <div class=" d-flex justify-content-center mb-3 "><img src="{{user_detail.profile_picture.url}}" width="150"
+                height="150" class="rounded-circle" alt=""></div>
+        {% endif %}
+        <div class="container text-center">
+            <div class="h5 font-bold">
+                <a href="{%url 'portfolio' user_detail.user%}">{{user_detail}}</a>
+            </div>
+            <small class=" text-primary font-weight-bold">@{{user_detail.user}}</small>
+            <small class="font-bold text-dark">{{user_detail.career_title}}</small>
+            <div class="card my-3">
+                <div class="dropdown show">
+                    <a class="btn btn-success dropdown-toggle w-100" href="#" role="button" id="dropdownMenuLink"
+                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        skills
+                    </a>
+                    <div class="dropdown-menu w-100 border border-success" aria-labelledby="dropdownMenuLink">
+                        <a class="dropdown-item" href="#">Action</a>
+                        <a class="dropdown-item" href="#">Another action</a>
+                        <a class="dropdown-item" href="#">Something else here</a>
                     </div>
                 </div>
-                <p class="text-center">{{user_detail.about_me|truncatechars:100}}</p>
-                <div class="col justify-content-center">
-                    <i class="col">{{user_detail.email}}</i>
-                    <!-- <i class="col">{{user_detail.phone_number}}</i> -->
-                </div>
+            </div>
+            <p class="">{{user_detail.about_me|truncatechars:100}}</p>
+            <div class="col justify-content-center">
+                <i class="col">{{user_detail.email}}</i>
+                <!-- <i class="col">{{user_detail.phone_number}}</i> -->
             </div>
         </div>
-    </a>
+    </div>
+
     {%endfor%}
 </div>
 {% endif %}
@@ -221,7 +224,7 @@
                 </div>
             </div>
         </div>
-
+        <!-- project modal -->
         <div class="modal fade" id="project{{project.id}}" tabindex="-1" role="dialog"
             aria-labelledby="exampleModalLongTitle" aria-hidden="true">
             <div class="modal-dialog" role="document" style="overflow-y: scroll; max-height: 90vh;">
@@ -244,6 +247,9 @@
         </div>
         {% endfor %}
     </div>
+    <div class="text-primary d-flex justify-content-end">
+        <a rel="nofollow" href="https://undraw.co/">See All posts &rarr;</a>
+    </div>
     {%endif%}
 
     <!-- Posts section -->
@@ -255,10 +261,10 @@
                 Featured Posts</h1>
 
         </div>
-        <!--  -->
+        <!-- posts section -->
         <div class="card-columns">
 
-            {% for post in posts %}
+            {% for post in posts|slice:"6" %}
             <div class="card border border-primary shadow">
 
                 {% if post.post_image %}
@@ -267,7 +273,8 @@
                 {% endif %}
 
                 <div class="card-body text-center p-3">
-                    <h4 class="card-title font-weight-bold"><a href="{% url 'post-detail' post.slug %}">{{post.title|truncatechars:40}}</a></h4>
+                    <h4 class="card-title font-weight-bold"><a
+                            href="{% url 'post-detail' post.slug %}">{{post.title|truncatechars:40}}</a></h4>
                     <p class="card-text">{{post.content|truncatechars:100|safe}}</p>
                     <!-- <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p> -->
                     <div class="row">
