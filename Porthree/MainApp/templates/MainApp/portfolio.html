@@ -145,8 +145,7 @@
         <div class="card-columns">
 
             {% for project in projects %}
-            <div class="card border shadow" style="cursor: pointer;" data-toggle="modal"
-                data-target="#project{{project.id}}">
+            <div class="card border shadow" style="cursor: pointer;" data-toggle="modal" data-target="#project{{project.id}}">
                 <!-- <img class="card-img-top" src="../../static/MainApp/img/undraw_posting_photo.svg" alt="Project image"> -->
                 <div class="card-body text-center p-3">
                     <h5 class="card-title"><strong>{{project.title|truncatechars:40}}</strong></h5>
