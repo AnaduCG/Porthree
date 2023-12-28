@@ -47,14 +47,26 @@ INSTALLED_APPS = [
 
 
 MIDDLEWARE = [
+
     "django.middleware.security.SecurityMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
     "django.middleware.common.CommonMiddleware",
     "django.middleware.csrf.CsrfViewMiddleware",
     "django.contrib.auth.middleware.AuthenticationMiddleware",
+
+    # middleware for timed authentication
+    "authentications.middleware.SessionTimeoutMiddleware",
+
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
 ]
+
+
+# Set session timeout to 15 minutes (900 seconds)
+# this is meant to control autologout with time
+SESSION_COOKIE_AGE = 24*60*60
+LOGIN_URL = 'au:login'
+
 
 ROOT_URLCONF = "Porthree.urls"
 

@@ -9,6 +9,8 @@ from .views import (
    
 )
 
+app_name = "au"
+
 urlpatterns = [
     path("signup/", signup, name="signup"),
     path("login/", user_login, name="login"),
