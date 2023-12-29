@@ -1,0 +1,503 @@
+{% extends 'portfolio_nav.html' %}
+{% load static %}
+{% load humanize %}
+
+{% block title %}{{user_details.user}} - Porthree{% endblock %}
+
+{% block nav %}
+<div id="navbar-example2" class="d-sm-inline-block form-inline navbar-search m-lg-auto" style="width: fit-content;">
+    <ul class="navbar-nav mr-auto">
+        <li class="nav-item">
+            <a class="nav-link font-weight-bold text-dark" href="{%url 'portfolio' user_details.user%}">Home</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link font-weight-bold text-dark" href="#projects">Projects</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link font-weight-bold text-dark" href="#resume">About</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link font-weight-bold text-dark" href="#posts">Posts</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link font-weight-bold text-dark" href="#contact">Contact</a>
+        </li>
+        <li class="nav-item">
+            <a type="button" class="nav-link font-weight-bold text-dark" data-toggle="modal"
+                data-target="#exampleModalLong">
+                CV
+            </a>
+        </li>
+    </ul>
+</div>
+{% endblock %}
+
+
+{% block content %}
+<!-- <div data-spy="scroll" data-target="#navbar-example2" data-offset="0"> -->
+
+<!-- user image Modal -->
+<div class="modal fade" id="heroportfolio" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle"
+    aria-hidden="true">
+    <div class="modal-dialog  modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                {% if user_details.profile_picture %}
+                <img src="{{user_details.profile_picture.url}}" width="100%">
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- hero section -->
+<div class="jumbotron" id="hero">
+    {%if user_details%}
+    <div class="row justify-content-center">
+
+        <div class="col-md-auto col-lg-7">
+            <h2 class="">{{user_details.career_title|safe}}</h2>
+            <h1 class="display-4 font-weight-bold">{{user_details|title}}
+            </h1>
+            <p class="lead">{{user_details.about_me|safe|truncatechars:255}}</p>
+            <ul class="d-flex flex-wrap">
+                {%if user_details.phone_number%}
+                <div class="mr-5 text-dark"><span class="font-weight-bold text-gray">Phone:</span>
+                    {{user_details.phone_number|safe}}</div>
+                {%endif%}
+                {%if user_details.email%}
+                <div class="mr-5 text-dark"><span class="font-weight-bold text-gray">Email:</span>
+                    {{user_details.email|safe}}</div>
+                {%endif%}
+            </ul>
+
+        </div>
+
+        {% if user_details.profile_picture %}
+        <div class="col col-lg-5 col-md">
+            <div class="img-fluid w-100 h-100 border" style="background-image: url({{user_details.profile_picture.url}}); min-height: 300px; min-width:250px;
+            background-repeat: no-repeat;
+            background-size: contain;
+            background-position: center;" type="button" data-toggle="modal" data-target="#heroportfolio"></div>
+        </div>
+        {% endif %}
+
+
+    </div>
+    <hr class="my-4">
+    <p class="text-capitalize"><span class="font-weight-bold">Skills:</span> {%for skill in skills|slice:":7"%}
+        {{skill}} |
+        {%endfor%}...
+    </p>
+    <p class="lead">
+        <a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a>
+    </p>
+    {%endif%}
+</div>
+<!-- end of hero section -->
+
+<!-- resume Modal -->
+<div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">
+                    {{user_details.first_name}}_{{user_details.last_name}} resume</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                {% if user_details.resume %}
+                <embed src="{{ user_details.resume.url }}" width="100%">
+                <p>Not showing?<a href="{{ user_details.resume.url }}" target="_blank" rel="noopener noreferrer">Open in
+                        browser</a></p>
+                {% else %}
+                <p>No resume available.</p>
+                {% endif %}
+            </div>
+            <!-- <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Save changes</button>
+            </div> -->
+        </div>
+    </div>
+</div>
+
+<!-- projects section -->
+{%if projects%}
+<div class="col mt-5" id="projects">
+    <!-- Page Heading -->
+    <div class="d-sm-flex align-items-center justify-content-between mb-4 mt-5">
+        <h1
+            class="mb-auto text-gray-800 mb-primary h2 border-bottom border-primary pr-5 font-weight-bold text-capitalize">
+            {{user_details.user}}'s Projects</h1>
+
+    </div>
+    <!-- project cards container  -->
+    <div class="card-columns">
+
+        {% for project in projects %}
+        <div class="card border shadow" style="cursor: pointer;" data-toggle="modal"
+            data-target="#project{{project.id}}">
+            <!-- <img class="card-img-top" src="../../static/MainApp/img/undraw_posting_photo.svg" alt="Project image"> -->
+            <div class="card-body text-center p-3">
+                <h5 class="card-title"><strong>{{project.title|title|truncatechars:40}}</strong></h5>
+                <p class="card-text">{{project.about|truncatechars:100|safe}}</p>
+                <!-- <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p> -->
+                <div class="row">
+                    <div class="col-sm">
+                        <a href="{%url 'portfolio' project.user%}"><img src="{{project.user.profile_picture}}"
+                                class="avatar" alt=""><strong class="text-capitalize">{{project.user}}</strong></a>
+                    </div>
+                    <div class="col-sm">
+                        <div class="dropdown show">
+                            <a class="dropdown-toggle h6 font-weight-bold text-gray" href="#" role="button"
+                                id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Tools
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                                <a class="dropdown-item" href="#">Action</a>
+                                <a class="dropdown-item" href="#">Another action</a>
+                                <a class="dropdown-item" href="#">Something else here</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm">
+                        <small class="text-muted font-weight-bold">{{project.created_at|timesince}} ago</small>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- project modal -->
+        <div class="modal fade" id="project{{project.id}}" tabindex="-1" role="dialog"
+            aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+            <div class="modal-dialog" role="document" style="overflow-y: scroll; max-height: 90vh;">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title font-weight-bold" id="exampleModalLongTitle">{{project.title}}</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        {{project.about}}
+                    </div>
+                    <div class="modal-footer">
+                        <!-- <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                      <button type="button" class="btn btn-primary">Save changes</button> -->
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    <div class="text-primary d-flex justify-content-end">
+        <a rel="nofollow" href="#">See All Projects &rarr;</a>
+    </div>
+</div>
+{%endif%}
+
+<!-- Resume section -->
+<div class="conatiner mt-5" id="resume">
+    <!-- Page Heading -->
+    <div class="d-sm-flex align-items-center justify-content-between mb-4 mt-5">
+        <h1
+            class="mb-auto text-gray-800 mb-primary h2 border-bottom border-primary pr-5 font-weight-bold text-capitalize">
+            {{user_details.user}}'s resume</h1>
+    </div>
+    <div class="row">
+        <div class="col">
+            <!-- Color System -->
+            <div class="card-title h4 font-weight-bold">Education</div>
+            <div class="row">
+                <div class="col-lg-6 mb-4">
+                    <div class="card bg-primary text-white shadow">
+                        <div class="card-body">
+                            <span class="text-capitalize">
+                                Primary
+                            </span>
+                            <div class="text-white-50 small">Lorem ipsum dolor sit, amet consectetur adipisicing
+                                elit. Mollitia, recusandae?</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6 mb-4">
+                    <div class="card bg-success text-white shadow">
+                        <div class="card-body">
+                            <span class="text-capitalize">
+                                Success
+                            </span>
+                            <div class="text-white-50 small">Lorem ipsum dolor, sit amet consectetur adipisicing
+                                elit. Odio, atque quod exercitationem dolore saepe minus! Voluptate, quo! Enim,
+                                ratione aperiam.</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6 mb-4">
+                    <div class="card bg-info text-white shadow">
+                        <div class="card-body">
+                            <span class="text-capitalize">
+                                Info
+                            </span>
+                            <div class="text-white-50 small">#36b9cc</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6 mb-4">
+                    <div class="card bg-warning text-white shadow">
+                        <div class="card-body">
+                            <span class="text-capitalize">
+                                Warning
+                            </span>
+                            <div class="text-white-50 small">#f6c23e</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6 mb-4">
+                    <div class="card bg-danger text-white shadow">
+                        <div class="card-body">
+                            <span class="text-capitalize">
+                                Danger
+                            </span>
+                            <div class="text-white-50 small">#e74a3b</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6 mb-4">
+                    <div class="card bg-secondary text-white shadow">
+                        <div class="card-body">
+                            <span class="text-capitalize">
+                                Secondary
+                            </span>
+                            <div class="text-white-50 small">#858796</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6 mb-4">
+                    <div class="card bg-light text-black shadow">
+                        <div class="card-body">
+                            <span class="text-capitalize">
+                                Light
+                            </span>
+                            <div class="text-black-50 small">#f8f9fc</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6 mb-4">
+                    <div class="card bg-dark text-white shadow">
+                        <div class="card-body">
+                            <span class="text-capitalize">
+                                Dark
+                            </span>
+                            <div class="text-white-50 small">#5a5c69</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col">
+            <!-- Color System -->
+            <div class="card-title h4 font-weight-bold">Experience</div>
+            <div class="row">
+                <div class="col-lg-6 mb-4">
+                    <div class="card bg-primary text-white shadow">
+                        <div class="card-body">
+                            <span class="text-capitalize">
+                                Primary
+                            </span>
+                            <div class="text-white-50 small">#4e73df</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6 mb-4">
+                    <div class="card bg-success text-white shadow">
+                        <div class="card-body">
+                            <span class="text-capitalize">
+                                Success
+                            </span>
+                            <div class="text-white-50 small">#1cc88a</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6 mb-4">
+                    <div class="card bg-info text-white shadow">
+                        <div class="card-body">
+                            <span class="text-capitalize">
+                                Info
+                            </span>
+                            <div class="text-white-50 small">#36b9cc</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6 mb-4">
+                    <div class="card bg-warning text-white shadow">
+                        <div class="card-body">
+                            <span class="text-capitalize">
+                                Warning
+                            </span>
+                            <div class="text-white-50 small">#f6c23e</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6 mb-4">
+                    <div class="card bg-danger text-white shadow">
+                        <div class="card-body">
+                            <span class="text-capitalize">
+                                Danger
+                            </span>
+                            <div class="text-white-50 small">#e74a3b</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6 mb-4">
+                    <div class="card bg-secondary text-white shadow">
+                        <div class="card-body">
+                            <span class="text-capitalize">
+                                Secondary
+                            </span>
+                            <div class="text-white-50 small">#858796</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6 mb-4">
+                    <div class="card bg-light text-black shadow">
+                        <div class="card-body">
+                            <span class="text-capitalize">
+                                Light
+                            </span>
+                            <div class="text-black-50 small">#f8f9fc</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6 mb-4">
+                    <div class="card bg-dark text-white shadow">
+                        <div class="card-body">
+                            <span class="text-capitalize">
+                                Dark
+                            </span>
+                            <div class="text-white-50 small">#5a5c69</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{%if posts%}
+<!-- Posts section -->
+<div class="col mt-5" id="posts">
+    <!-- Page Heading -->
+    <div class="d-sm-flex align-items-center justify-content-between mb-4 mt-5">
+        <h1
+            class="mb-auto text-gray-800 mb-primary h2 border-bottom border-primary pr-5 font-weight-bold text-capitalize">
+            {{user_details.user}}'s Posts</h1>
+    </div>
+    <!-- posts section -->
+    <div class="card-columns">
+
+        {% for post in posts|slice:"3" %}
+        <div class="card border border-primary shadow">
+
+            {% if post.post_image %}
+
+            <img class="card-img-top" src="{{post.post_image.url}}" alt="post image">
+            {% endif %}
+
+            <div class="card-body text-center p-3">
+                <h4 class="card-title font-weight-bold"><a
+                        href="{% url 'post-detail' post.slug %}">{{post.title|title|truncatechars:40}}</a></h4>
+                <p class="card-text">{{post.content|truncatechars:100|safe}}</p>
+                <!-- <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p> -->
+                <div class="row">
+                    <div class="col-sm">
+                        <a href="{%url 'portfolio' post.user%}"><img src="{{post.user.profile_picture}}" class="avatar"
+                                alt=""><strong class="text-capitalize">{{post.user}}</strong></a>
+                    </div>
+                    <div class="col-sm">
+                        <div class="dropdown show">
+                            <a class="dropdown-toggle h6 font-weight-bold text-gray" href="#" role="button"
+                                id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Tags
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                                <a class="dropdown-item" href="#">Action</a>
+                                <a class="dropdown-item" href="#">Another action</a>
+                                <a class="dropdown-item" href="#">Something else here</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm">
+                        <small class="text-muted font-weight-bold">{{post.created_at|timesince}} ago</small>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    <div class="text-primary d-flex justify-content-end">
+        <a rel="nofollow" href="#">See All posts &rarr;</a>
+    </div>
+</div>
+{%endif%}
+<!-- contact section -->
+<div class="container-fluid mt-5" id="contact">
+    <div class="row">
+        <div class="col-7 justify-content-center">
+            <!-- section Heading -->
+            <div class="d-sm-flex align-items-center justify-content-between mb-4 mt-5">
+                <h1
+                    class="mb-auto text-gray-800 mb-primary h2 border-bottom border-primary pr-5 font-weight-bold text-capitalize">
+                    {{user_details.user}}'s Contact</h1>
+            </div>
+            <!-- Color System -->
+            <div class="row">
+                <div class="col-lg-6 mb-4">
+                    <div class="card bg-light text-black shadow">
+                        <div class="card-body">
+                            Email
+                            <div class="text-black-50 small">{{user_details.email}}</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6 mb-4">
+                    <div class="card bg-light text-black shadow">
+                        <div class="card-body">
+                            Phone
+                            <div class="text-black-50 small">{{user_details.phone_number}}</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="card col-md-5 py-2 h-100">
+            <form>
+                <div class="form-group">
+                    <label for="inputAddress">Name</label>
+                    <input type="text" class="form-control" id="inputAddress" placeholder="Enter full-name">
+                </div>
+                <div class="form-group">
+                    <label for="inputAddress">Email</label>
+                    <input type="email" class="form-control" id="inputAddress" placeholder="example@gmail.com">
+                </div>
+                <div class="form-group">
+                    <label for="inputAddress">Subject</label>
+                    <input type="text" class="form-control" id="inputAddress" placeholder="Message title">
+                </div>
+                <div class="form-group">
+                    <label for="exampleFormControlTextarea1">Message</label>
+                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="7"></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary">Send</button>
+            </form>
+        </div>
+    </div>
+</div>
+<!-- </div> -->
+{% endblock %}

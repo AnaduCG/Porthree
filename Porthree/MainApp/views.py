@@ -217,6 +217,8 @@ def post_detail(request, slug):
     context = {'post': post, 'user': user}
     return render(request, 'MainApp/post_detail.html', context)
 
+from authentications.views import logout_required
+@logout_required
 def signup(request):
     if request.method == "POST":
         form = SignUpForm(request.POST)
@@ -233,7 +235,7 @@ def signup(request):
         form = SignUpForm()
     return render(request, "MainApp/sign-up.html", {"form": form})
 
-
+@logout_required
 def user_login(request):
     if request.method == "POST":
         form = LoginForm(request, request.POST)
