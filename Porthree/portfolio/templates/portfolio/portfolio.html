@@ -6,9 +6,9 @@
 
 {% block nav %}
 <div id="navbar-example2" class="d-sm-inline-block form-inline navbar-search m-lg-auto" style="width: fit-content;">
-    <ul class="navbar-nav mr-auto">
+    <ul class="navbar-nav mr-auto text-capitalize">
         <li class="nav-item">
-            <a class="nav-link font-weight-bold text-dark" href="{%url 'portfolio' user_details.user%}">Home</a>
+            <a class="nav-link font-weight-bold text-dark" href="{%url 'portfolio' user_details.user%}">{{user_details.user}}</a>
         </li>
         <li class="nav-item">
             <a class="nav-link font-weight-bold text-dark" href="#projects">Projects</a>
@@ -35,11 +35,33 @@
 
 {% block content %}
 <!-- <div data-spy="scroll" data-target="#navbar-example2" data-offset="0"> -->
+<style>
+    .project-modal {
+    overflow-y: scroll;
+    max-height: 90vh;
+}
+.project-modal::-webkit-scrollbar {
+    width: 7px;
+    /* width of the entire scrollbar */
+}
 
+.project-modal::-webkit-scrollbar-track {
+    background: #4E73DF;
+    border-radius: 4px;
+    /* color of the tracking area */
+}
+
+.project-modal::-webkit-scrollbar-thumb {
+    background-color: #fff;
+    /* color of the scroll thumb */
+    border-radius: 2px;
+    /* roundness of the scroll thumb */
+}
+</style>
 <!-- user image Modal -->
 <div class="modal fade" id="heroportfolio" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle"
     aria-hidden="true">
-    <div class="modal-dialog  modal-dialog-centered" role="document">
+    <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -80,7 +102,7 @@
 
         {% if user_details.profile_picture %}
         <div class="col col-lg-5 col-md">
-            <div class="img-fluid w-100 h-100 border" style="background-image: url({{user_details.profile_picture.url}}); min-height: 300px; min-width:250px;
+            <div class="img-fluid w-100 h-100" style="background-image: url({{user_details.profile_picture.url}}); min-height: 300px; min-width:250px;
             background-repeat: no-repeat;
             background-size: contain;
             background-position: center;" type="button" data-toggle="modal" data-target="#heroportfolio"></div>
@@ -143,13 +165,14 @@
     <!-- project cards container  -->
     <div class="card-columns">
 
-        {% for project in projects %}
-        <div class="card border shadow" style="cursor: pointer;" data-toggle="modal"
-            data-target="#project{{project.id}}">
+        {% for project in projects|slice:"9" %}
+        <div class="card border shadow">
             <!-- <img class="card-img-top" src="../../static/MainApp/img/undraw_posting_photo.svg" alt="Project image"> -->
             <div class="card-body text-center p-3">
-                <h5 class="card-title"><strong>{{project.title|title|truncatechars:40}}</strong></h5>
-                <p class="card-text">{{project.about|truncatechars:100|safe}}</p>
+                <div class="" style="cursor: pointer;" data-toggle="modal" data-target="#project{{project.id}}">
+                    <h5 class="card-title"><strong>{{project.title|title|truncatechars:40}}</strong></h5>
+                    <p class="card-text">{{project.about|truncatechars:100|safe}}</p>
+                </div>
                 <!-- <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p> -->
                 <div class="row">
                     <div class="col-sm">
@@ -178,7 +201,7 @@
         <!-- project modal -->
         <div class="modal fade" id="project{{project.id}}" tabindex="-1" role="dialog"
             aria-labelledby="exampleModalLongTitle" aria-hidden="true">
-            <div class="modal-dialog" role="document" style="overflow-y: scroll; max-height: 90vh;">
+            <div class="modal-dialog  modal-lg project-modal" role="document" style="overflow-y: scroll; max-height: 90vh;">
                 <div class="modal-content">
                     <div class="modal-header">
                         <h5 class="modal-title font-weight-bold" id="exampleModalLongTitle">{{project.title}}</h5>
@@ -208,9 +231,9 @@
 <div class="conatiner mt-5" id="resume">
     <!-- Page Heading -->
     <div class="d-sm-flex align-items-center justify-content-between mb-4 mt-5">
-        <h1
-            class="mb-auto text-gray-800 mb-primary h2 border-bottom border-primary pr-5 font-weight-bold text-capitalize">
-            {{user_details.user}}'s resume</h1>
+        <h1 class="mb-auto text-gray-800 mb-primary h2 border-bottom border-primary pr-5 font-weight-bold text-capitalize">
+            {{user_details.user}}'s resume
+        </h1>
     </div>
     <div class="row">
         <div class="col">
@@ -406,13 +429,15 @@
         <div class="card border border-primary shadow">
 
             {% if post.post_image %}
-
+            <a href="{% url 'post-detail' post.slug %}">
             <img class="card-img-top" src="{{post.post_image.url}}" alt="post image">
+            </a>
             {% endif %}
 
             <div class="card-body text-center p-3">
-                <h4 class="card-title font-weight-bold"><a
-                        href="{% url 'post-detail' post.slug %}">{{post.title|title|truncatechars:40}}</a></h4>
+                <h4 class="card-title font-weight-bold">
+                    <a href="{% url 'post-detail' post.slug %}">{{post.title|title|truncatechars:40}}</a>
+                </h4>
                 <p class="card-text">{{post.content|truncatechars:100|safe}}</p>
                 <!-- <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p> -->
                 <div class="row">

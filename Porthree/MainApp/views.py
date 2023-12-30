@@ -3,6 +3,7 @@ from django.shortcuts import render, redirect
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import login, authenticate, logout
+from django.urls import reverse
 from .forms import SignUpForm, LoginForm
 from .forms import UserDetailsForm, ProjectForm, SkillForm, PostForm
 from .models import UserDetails, Project, Skill, Post
@@ -18,6 +19,7 @@ def index(request):
     Returns:
         _object_: interaction with template
     """
+    user = request.user
     try:
         # Check if data already exists for the current user
         user_details = UserDetails.objects.all().order_by("?")
@@ -33,8 +35,14 @@ def index(request):
         projects = Project.objects.all().order_by("-created_at")
     except Project.DoesNotExist:
         projects = None
+    try:
+        # Check if data already exists for the current user
+        user_detail = UserDetails.objects.get(user=user)
+    except (UserDetails.DoesNotExist, TypeError):
+        user_detail = None
     context = {
         "user_details": user_details,
+        "user_detail": user_detail,
         "posts": posts,
         "projects": projects,
         }
@@ -217,6 +225,8 @@ def post_detail(request, slug):
     context = {'post': post, 'user': user}
     return render(request, 'MainApp/post_detail.html', context)
 
+from authentications.views import logout_required
+@logout_required
 def signup(request):
     if request.method == "POST":
         form = SignUpForm(request.POST)
@@ -233,7 +243,7 @@ def signup(request):
         form = SignUpForm()
     return render(request, "MainApp/sign-up.html", {"form": form})
 
-
+@logout_required
 def user_login(request):
     if request.method == "POST":
         form = LoginForm(request, request.POST)

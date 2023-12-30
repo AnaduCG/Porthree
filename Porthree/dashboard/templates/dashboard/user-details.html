@@ -2,6 +2,34 @@
 
 {% block title %}{{user.username}} details - Porthree{% endblock %}
 
+{% block nav %}
+<div id="navbar-example2" class="d-sm-inline-block form-inline navbar-search m-lg-auto" style="width: fit-content;">
+    <ul class="navbar-nav mr-auto text-capitalize">
+        <li class="nav-item">
+            <a class="nav-link font-weight-bold text-dark" href="{%url 'portfolio' user%}">{{user}}</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link font-weight-bold text-dark" href="{%url 'portfolio' user%}#projects">Projects</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link font-weight-bold text-dark" href="{%url 'portfolio' user%}#resume">About</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link font-weight-bold text-dark" href="{%url 'portfolio' user%}#posts">Posts</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link font-weight-bold text-dark" href="{%url 'portfolio' user%}#contact">Contact</a>
+        </li>
+        <li class="nav-item">
+            <a type="button" class="nav-link font-weight-bold text-dark" data-toggle="modal"
+                data-target="#exampleModalLong">
+                CV
+            </a>
+        </li>
+    </ul>
+</div>
+{% endblock %}
+
 {% block content %}
 <!-- Page Heading -->
 <div class="d-sm-flex align-items-center justify-content-between mb-4">
@@ -116,9 +144,5 @@
 
 </div>
 
-</div>
-<!-- /.container-fluid -->
-
-</div>
 <!-- End of Main Content -->
 {% endblock %}

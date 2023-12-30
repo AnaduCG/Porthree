@@ -1,5 +1,6 @@
 from django.shortcuts import get_object_or_404
 from django.shortcuts import render, redirect
+from django.core.paginator import Paginator
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import login, authenticate, logout
@@ -75,6 +76,11 @@ def create_skill(request):
 @login_required
 def create_project(request, project_id=None):
     user = request.user
+    try:
+        # Check if data already exists for the current user
+        user_details = UserDetails.objects.get(user=user)
+    except UserDetails.DoesNotExist:
+        user_details = None
 
     # Handling project deletion
     if request.method == "POST" and "delete_project" in request.POST:
@@ -115,19 +121,28 @@ def create_project(request, project_id=None):
         else:
             form = ProjectForm()
 
-    projects = Project.objects.filter(user=user)  # Retrieve all projects for display
-    user_details = UserDetails.objects.filter(user=user)  # Retrieve all projects for display
+    projects_list = Project.objects.filter(user=user).order_by("-created_at")  # Retrieve all projects for display
 
+    paginator = Paginator(projects_list, 7)
+    page_number = request.GET.get("page")
+    projects = paginator.get_page(page_number)
+    project_count = projects_list.count()
     context = {
         "form": form,
         "projects": projects,
         "user_details": user_details,
+        "project_count": project_count,
         }
     return render(request, "dashboard/create-project.html", context)
 
 @login_required
 def create_post(request, post_id=None):
     user = request.user
+    try:
+        # Check if data already exists for the current user
+        user_details = UserDetails.objects.get(user=user)
+    except UserDetails.DoesNotExist:
+        user_details = None
 
     # Handling post deletion
     if request.method == "POST" and "delete_post" in request.POST:
@@ -164,12 +179,16 @@ def create_post(request, post_id=None):
         else:
             form = PostForm()
 
-    posts = Post.objects.filter(user=user)  # Retrieve all posts for display
-    user_details = UserDetails.objects.filter(user=user)  # Retrieve all user details for display
+    posts_list = Post.objects.filter(user=user).order_by("-created_at")  # Retrieve all posts for display
 
+    paginator = Paginator(posts_list, 7)
+    page_number = request.GET.get("page")
+    posts = paginator.get_page(page_number)
+    post_count = posts_list.count()
     context = {
         "form": form,
         "posts": posts,
         "user_details": user_details,
+        "post_count": post_count,
         }
     return render(request, "dashboard/create-post.html", context)

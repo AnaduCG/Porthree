@@ -177,11 +177,11 @@
                                     </li>
 
                                     <!-- Nav Item - User Information -->
-                                    <li class="nav-item dropdown no-arrow" style="width: 190px;">
+                                    <li class="nav-item dropdown no-arrow pl-4" style="width: 190px;">
                                         <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                                             data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                             <span
-                                                class="mr-2 d-none d-lg-inline text-gray-600 small text-capitalize">{{user.username}}</span>
+                                                class="mr-2 d-none d-lg-inline font-weight-bold text-capitalize text-success">{{user.username}}</span>
                                             {%if user_details.profile_picture%}
                                             <img class="img-profile rounded-circle float-right"
                                                 src="{{user_details.profile_picture.url}}">
@@ -228,7 +228,7 @@
                 <div class="container-fluid">
 
 
-                    <!-- Modal -->
+                    <!--CV Modal -->
                     <div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog"
                         aria-labelledby="exampleModalLongTitle" aria-hidden="true">
                         <div class="modal-dialog" role="document">

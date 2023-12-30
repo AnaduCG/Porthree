@@ -5,6 +5,34 @@
 {% block title %}{{ user.username }} posts - Porthree{% endblock %}
 <link href="{% static 'MainApp/vendor/datatables/dataTables.bootstrap4.min.css' %}" rel="stylesheet">
 
+{% block nav %}
+<div id="navbar-example2" class="d-sm-inline-block form-inline navbar-search m-lg-auto" style="width: fit-content;">
+    <ul class="navbar-nav mr-auto text-capitalize">
+        <li class="nav-item">
+            <a class="nav-link font-weight-bold text-dark" href="{%url 'portfolio' user%}">{{user}}</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link font-weight-bold text-dark" href="{%url 'portfolio' user%}#projects">Projects</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link font-weight-bold text-dark" href="{%url 'portfolio' user%}#resume">About</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link font-weight-bold text-dark" href="{%url 'portfolio' user%}#posts">Posts</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link font-weight-bold text-dark" href="{%url 'portfolio' user%}#contact">Contact</a>
+        </li>
+        <li class="nav-item">
+            <a type="button" class="nav-link font-weight-bold text-dark" data-toggle="modal"
+                data-target="#exampleModalLong">
+                CV
+            </a>
+        </li>
+    </ul>
+</div>
+{% endblock %}
+
 {% block content %}
 <div class="container-fluid">
     <!-- Page Heading -->
@@ -42,7 +70,7 @@
     <div class="card shadow mb-4">
         <div class="card-header py-3 d-flex flex-wrap justify-content-between">
             <h6 class="m-0 font-weight-bold text-primary">Posts table</h6>
-            <h6 class="m-0 font-weight-bold text-primary">Total Posts ({{posts|length}})</h6>
+            <h6 class="m-0 font-weight-bold text-success">Total Posts ({{post_count}})</h6>
         </div>
         <div class="card-body">
             <div class="table-responsive">
@@ -103,11 +131,17 @@
         <div class="d-flex px-3 justify-content-end">
             <nav aria-label="Page navigation example">
                 <ul class="pagination">
-                    <li class="page-item"><a class="page-link" href="#">Previous</a></li>
-                    <li class="page-item"><a class="page-link" href="#">1</a></li>
-                    <li class="page-item"><a class="page-link" href="#">2</a></li>
-                    <li class="page-item"><a class="page-link" href="#">3</a></li>
-                    <li class="page-item"><a class="page-link" href="#">Next</a></li>
+                    {% if posts.has_previous %}
+                    <li class="page-item"><a class="page-link" href="?page=1">First</a></li>
+                    <li class="page-item"><a class="page-link" href="?page={{posts.previous_page_number}}">Previous</a></li>
+                    {% endif %}
+                    <li class="page-item"><a class="page-link" href="#">page {{posts.number}} of {{posts.paginator.num_pages}}</a></li>
+                    <!-- <li class="page-item"><a class="page-link" href="#">2</a></li>
+                    <li class="page-item"><a class="page-link" href="#">3</a></li> -->
+                    {% if posts.has_next %}
+                    <li class="page-item"><a class="page-link" href="?page={{posts.next_page_number}}">Next</a></li>
+                    <li class="page-item"><a class="page-link" href="?page={{posts.paginator.num_pages}}">Last</a></li>
+                    {% endif %}
                 </ul>
             </nav>
         </div>

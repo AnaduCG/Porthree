@@ -34,6 +34,7 @@ INSTALLED_APPS = [
     "MainApp.apps.MainappConfig",
     "authentications",
     "dashboard",
+    "portfolio",
     "ckeditor",
     "ckeditor_uploader",
     "django.contrib.admin",
@@ -66,7 +67,6 @@ MIDDLEWARE = [
 # this is meant to control autologout with time
 SESSION_COOKIE_AGE = 24*60*60
 LOGIN_URL = 'au:login'
-
 
 ROOT_URLCONF = "Porthree.urls"
 

@@ -28,6 +28,9 @@ urlpatterns = [
     # app dashboard
     path("dashboard/", include("dashboard.urls")),
 
+    # app portfolio
+    path("portfolio/", include("portfolio.urls")),
+
     path('ckeditor/', include('ckeditor_uploader.urls')),
     path('admin/', admin.site.urls),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
