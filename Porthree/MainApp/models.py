@@ -90,15 +90,16 @@ class Comment(models.Model):
     """
 
     id = models.UUIDField(primary_key=True, default=uuid4, editable=False)
-    post = models.ForeignKey(Post, on_delete=models.CASCADE)
+    post = models.ForeignKey(Post, on_delete=models.CASCADE, related_name='comments')
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
-    content = models.TextField(null=True, blank=True)
+    text = models.TextField(null=True, blank=True)
+    parent_comment = models.ForeignKey('self', null=True, blank=True, on_delete=models.CASCADE, related_name='replies')
     like = models.BooleanField(default=False)
 
     def __str__(self):
         return f"Comment by {self.post.user.username} on post '{self.post.title}'"
-
 
 class Skill(models.Model):
     """
