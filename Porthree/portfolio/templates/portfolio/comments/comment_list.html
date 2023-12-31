@@ -1,0 +1,38 @@
+<!-- portfolio/comments/comment_list.html -->
+
+<ul class="comment-list">
+  {% for comment in comments %}
+    <li class="comment">
+      <p>{{ comment.text }}</p>
+      <div class="comment-details">
+        <p class="comment-meta">By: {{ comment.user.username }} at {{ comment.created_at }}</p>
+        {% if comment.replies.count > 0 %}
+          <ul class="replies">
+            {% include 'portfolio/comments/comment_list.html' with comments=comment.replies.all %}
+          </ul>
+        {% endif %}
+
+        <!-- Button to toggle the dropdown -->
+        <button type="button" class="btn btn-sm btn-primary" data-toggle="collapse" data-target="#replyBlock{{ comment.id }}" aria-expanded="false" aria-controls="replyBlock{{ comment.id }}" style="display: inline-block;">
+          Reply
+        </button>
+
+        <!-- Dropdown content for reply form -->
+        <div class="collapse" id="replyBlock{{ comment.id }}">
+          <!-- Reply form goes here -->
+          <form class="reply-form" id="reply-form-{{ comment.id }}" method="post" action="{% url 'portfolio:post-detail' post.slug %}">
+            {% csrf_token %}
+            <input type="hidden" name="parent_comment_id" value="{{ comment.id }}">
+            <!-- Customize the form using Bootstrap styles -->
+            <div class="form-group">
+              <label for="replyText">Your Reply:</label>
+              <textarea class="form-control" id="replyText" name="text" rows="3"></textarea>
+            </div>
+            <button type="submit" class="btn btn-sm btn-primary">Submit Reply</button>
+          </form>
+        </div>
+      </div>
+    </li>
+  {% endfor %}
+</ul>
+
