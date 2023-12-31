@@ -13,7 +13,13 @@ def post_detail(request, slug):
     comments = post.comments.filter(parent_comment__isnull=True)
     user = request.user
 
-    if request.method == 'POST':
+    try:
+        # Check if data already exists for the current user
+        user_details = UserDetails.objects.get(user=user)
+    except (UserDetails.DoesNotExist, TypeError):
+      user_details = None
+
+    if request.method == 'POST': # handle comments and replies
         form = CommentForm(request.POST)
         if form.is_valid():
             new_comment = form.save(commit=False)
@@ -31,11 +37,13 @@ def post_detail(request, slug):
         form = CommentForm()
 
     if request.headers.get('X-Requested-With') == 'XMLHttpRequest':
+        # handle comments without full refresh
         context = {'comments': comments, 'post': post, "form": form}
         comments_html = 'portfolio/comments/comment_list.html'
         return JsonResponse({'html': render_to_string(comments_html, context, request=request)})
 
-    context = {'post': post, 'comments': comments, 'form': form, 'user': user}
+    context = {'post': post, 'comments': comments, 
+            'form': form, 'user': user, " user_details":  user_details}
     return render(request, 'portfolio/post_detail.html', context)
 
 
