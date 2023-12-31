@@ -292,14 +292,14 @@
         <div class="card border border-primary shadow">
 
             {% if post.post_image %}
-            <a href="{% url 'post-detail' post.slug %}">
+            <a href="{% url 'portfolio:post-detail' post.slug %}">
                 <img class="card-img-top" src="{{post.post_image.url}}" alt="post image" style="max-height: 300px;">
             </a>
             {% endif %}
 
             <div class="card-body text-center p-3">
                 <h4 class="card-title font-weight-bold">
-                    <a href="{% url 'post-detail' post.slug %}">{{post.title|title|truncatechars:40}}</a>
+                    <a href="{% url 'portfolio:post-detail' post.slug %}">{{post.title|title|truncatechars:40}}</a>
                 </h4>
                 <p class="card-text">{{post.content|truncatechars:100|safe}}</p>
                 <!-- <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p> -->
