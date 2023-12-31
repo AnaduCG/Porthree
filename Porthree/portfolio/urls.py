@@ -6,6 +6,8 @@ from .views import (
     post_detail,
 )
 
+app_name = 'portfolio'
+
 urlpatterns = [
     path("user/<username>", portfolio, name="portfolio"),
     path('posts/<slug:slug>/', post_detail, name='post-detail'),

@@ -2,28 +2,41 @@ from django.shortcuts import get_object_or_404
 from django.shortcuts import render, redirect
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
-from MainApp.models import UserDetails, Project, Skill, Post
-
+from MainApp.models import UserDetails, Project, Skill, Post, Comment
+from django.http import JsonResponse
+from .forms import CommentForm
+from django.template.loader import render_to_string
 
 
 def post_detail(request, slug):
-    """
-    this view manages the display of a pecific post content
-    """
     post = get_object_or_404(Post, slug=slug)
+    comments = post.comments.filter(parent_comment__isnull=True)
     user = request.user
-    try:
-        # Check if data already exists for the current user
-        user_details = UserDetails.objects.get(user=user)
-    except (UserDetails.DoesNotExist, TypeError):
-        user_details = None
-    context = {
-        'post': post,
-        'user_details': user_details,
-        'user': user
-        }
-    return render(request, 'portfolio/post_detail.html', context)
 
+    if request.method == 'POST':
+        form = CommentForm(request.POST)
+        if form.is_valid():
+            new_comment = form.save(commit=False)
+            new_comment.post = post
+            new_comment.user = request.user
+
+            parent_comment_id = request.POST.get('parent_comment_id')
+            if parent_comment_id:
+                parent_comment = Comment.objects.get(id=parent_comment_id)
+                new_comment.parent_comment = parent_comment
+
+            new_comment.save()
+            form = CommentForm()
+    else:
+        form = CommentForm()
+
+    if request.headers.get('X-Requested-With') == 'XMLHttpRequest':
+        context = {'comments': comments, 'post': post, "form": form}
+        comments_html = 'portfolio/comments/comment_list.html'
+        return JsonResponse({'html': render_to_string(comments_html, context, request=request)})
+
+    context = {'post': post, 'comments': comments, 'form': form, 'user': user}
+    return render(request, 'portfolio/post_detail.html', context)
 
 
 def portfolio(request, username):

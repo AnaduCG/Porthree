@@ -1,0 +1,47 @@
+<!-- portfolio/comments/comment_list.html -->
+
+{% for comment in comments %}
+  <div class="comment">
+    <p>{{ comment.text }}</p>
+    <p>By: {{ comment.user.username }} at {{ comment.created_at }}</p>
+
+    {% if comment.replies.count > 0 %}
+      <div class="replies">
+        {% include 'portfolio/comments/comment_list.html' with comments=comment.replies.all %}
+      </div>
+    {% endif %}
+
+    <!-- Button to trigger the modal -->
+    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#replyModal{{ comment.id }}">
+      Reply
+    </button>
+
+    <!-- Modal -->
+    <div class="modal fade" id="replyModal{{ comment.id }}" tabindex="-1" role="dialog" aria-labelledby="replyModalLabel{{ comment.id }}" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="replyModalLabel{{ comment.id }}">Reply to {{ comment.user.username }}</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <!-- Your reply form goes here -->
+            <form class="reply-form" id="reply-form-{{ comment.id }}" method="post" action="{% url 'portfolio:post-detail' post.slug %}">
+              {% csrf_token %}
+              <input type="hidden" name="parent_comment_id" value="{{ comment.id }}">
+              <!-- Customize the form using Bootstrap styles -->
+              <div class="form-group">
+                <label for="replyText">Your Reply:</label>
+                <textarea class="form-control" id="replyText" name="text" rows="3"></textarea>
+              </div>
+              <button type="submit" class="btn btn-primary">Submit Reply</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endfor %}
+

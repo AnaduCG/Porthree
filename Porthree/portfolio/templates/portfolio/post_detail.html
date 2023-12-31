@@ -169,10 +169,64 @@
     <div class="col-xl-8 col-lg-7">
         <div class="card shadow mb-4">
             <h2 class="text-center">Comments:</h2>
-
+	    <div id="comments-section">
+		    {% include 'portfolio/comments/comment_list.html' with comments=comments %}
+	    </div>
+	    <div class="container mt-5">
+		    <h3>Add a Comment</h3>
+		    <form id="comment-form" method="post" action="{% url 'portfolio:post-detail' post.slug %}">
+			    {% csrf_token %}
+			    <div class="form-group">
+				    <textarea class="form-control" rows="5" name="{{ form.text.name }}" placeholder="Type your comment here"></textarea>
+			    </div>
+			    <button type="submit" class="btn btn-primary">Submit</button>
+		    </form>
+	    </div>
         </div>
     </div>
-</div>
+   </div>
 
+<!-- Jquery script to auto fetch data from view and update without loading entire page -->
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+<script>
+$(document).ready(function () {
+    // Submit comment form
+    $('#comment-form').submit(function (e) {
+        e.preventDefault();
+        console.log('Submitting comment form...');
+        console.log('Serialized data:', $(this).serialize());
+        $.ajax({
+            type: 'POST',
+            url: $(this).attr('action'),
+            data: $(this).serialize(),
+            success: function (data) {
+                console.log('Comment form success:', data);
+                $('#comments-section').html(data.html);
+            },
+            error: function (error) {
+                console.log('Comment form error:', error);
+            }
+        });
+    });
 
+    // Submit reply form
+    $('.reply-form').submit(function (e) {
+        e.preventDefault();
+        console.log('Submitting reply form...');
+        console.log('Serialized data:', $(this).serialize());
+        $.ajax({
+            type: 'POST',
+            url: $(this).attr('action'),
+            data: $(this).serialize(),
+            success: function (data) {
+                console.log('Reply form success:', data);
+                $('.replies').html(data.html);
+            },
+            error: function (error) {
+                console.log('Reply form error:', error);
+            }
+        });
+    });
+});
+</script>
 {% endblock %}
