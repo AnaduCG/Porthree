@@ -8,19 +8,19 @@
 <div id="navbar-example2" class="d-sm-inline-block form-inline navbar-search m-lg-auto" style="width: fit-content;">
     <ul class="navbar-nav mr-auto text-capitalize">
         <li class="nav-item">
-            <a class="nav-link font-weight-bold text-dark" href="{%url 'portfolio' post.user%}">{{post.user}}</a>
+            <a class="nav-link font-weight-bold text-dark" href="{%url 'portfolio:portfolio' post.user%}">{{post.user}}</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link font-weight-bold text-dark" href="{%url 'portfolio' post.user%}#projects">Projects</a>
+            <a class="nav-link font-weight-bold text-dark" href="{%url 'portfolio:portfolio' post.user%}#projects">Projects</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link font-weight-bold text-dark" href="{%url 'portfolio' post.user%}#resume">About</a>
+            <a class="nav-link font-weight-bold text-dark" href="{%url 'portfolio:portfolio' post.user%}#resume">About</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link font-weight-bold text-dark" href="{%url 'portfolio' post.user%}#posts">Posts</a>
+            <a class="nav-link font-weight-bold text-dark" href="{%url 'portfolio:portfolio' post.user%}#posts">Posts</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link font-weight-bold text-dark" href="{%url 'portfolio' post.user%}#contact">Contact</a>
+            <a class="nav-link font-weight-bold text-dark" href="{%url 'portfolio:portfolio' post.user%}#contact">Contact</a>
         </li>
         <li class="nav-item">
             <a type="button" class="nav-link font-weight-bold text-dark" data-toggle="modal"
@@ -61,8 +61,8 @@
     {% if user.is_authenticated and post.user == user %}
     <!-- Link to create-post endpoint -->
     <div class="d-flex w-50 justify-content-between">
-        <a href="{% url 'create-post' %}" class="btn btn-primary">Create New Post</a>
-        <a href="{% url 'edit-post' post.id %}" class="btn btn-success font-weight-bold">
+        <a href="{% url 'dashboard:create-post' %}" class="btn btn-primary">Create New Post</a>
+        <a href="{% url 'dashboard:edit-post' post.id %}" class="btn btn-success font-weight-bold">
             Edit Post</a>
     </div>
     {% endif %}

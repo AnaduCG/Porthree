@@ -72,7 +72,7 @@
         {% endif %}
         <div class="container text-center">
             <div class="h5 font-bold">
-                <a href="{%url 'portfolio' user_detail.user%}">{{user_detail|title}}</a>
+                <a href="{%url 'portfolio:portfolio' user_detail.user%}">{{user_detail|title}}</a>
             </div>
             <small class=" text-primary font-weight-bold">@{{user_detail.user}}</small>
             <small class="font-bold text-dark">{{user_detail.career_title}}</small>
@@ -226,7 +226,7 @@
                 <!-- <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p> -->
                 <div class="row">
                     <div class="col-sm">
-                        <a href="{%url 'portfolio' project.user%}"><img src="{{project.user.profile_picture}}"
+                        <a href="{%url 'portfolio:portfolio' project.user%}"><img src="{{project.user.profile_picture}}"
                                 class="avatar" alt=""><strong class="text-capitalize">{{project.user}}</strong></a>
                     </div>
                     <div class="col-sm">
@@ -305,7 +305,7 @@
                 <!-- <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p> -->
                 <div class="row">
                     <div class="col-sm">
-                        <a href="{%url 'portfolio' post.user%}"><img src="{{post.user.profile_picture}}" class="avatar"
+                        <a href="{%url 'portfolio:portfolio' post.user%}"><img src="{{post.user.profile_picture}}" class="avatar"
                                 alt=""><strong class="text-capitalize">{{post.user}}</strong></a>
                     </div>
                     <div class="col-sm">

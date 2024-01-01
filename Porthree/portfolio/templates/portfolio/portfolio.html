@@ -8,7 +8,7 @@
 <div id="navbar-example2" class="d-sm-inline-block form-inline navbar-search m-lg-auto" style="width: fit-content;">
     <ul class="navbar-nav mr-auto text-capitalize">
         <li class="nav-item">
-            <a class="nav-link font-weight-bold text-dark" href="{%url 'portfolio' user_details.user%}">{{user_details.user}}</a>
+            <a class="nav-link font-weight-bold text-dark" href="{%url 'portfolio:portfolio' user_details.user%}">{{user_details.user}}</a>
         </li>
         <li class="nav-item">
             <a class="nav-link font-weight-bold text-dark" href="#projects">Projects</a>
@@ -176,7 +176,7 @@
                 <!-- <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p> -->
                 <div class="row">
                     <div class="col-sm">
-                        <a href="{%url 'portfolio' project.user%}"><img src="{{project.user.profile_picture}}"
+                        <a href="{%url 'portfolio:portfolio' project.user%}"><img src="{{project.user.profile_picture}}"
                                 class="avatar" alt=""><strong class="text-capitalize">{{project.user}}</strong></a>
                     </div>
                     <div class="col-sm">
@@ -429,20 +429,20 @@
         <div class="card border border-primary shadow">
 
             {% if post.post_image %}
-            <a href="{% url 'post-detail' post.slug %}">
+            <a href="{% url 'portfolio:post-detail' post.slug %}">
             <img class="card-img-top" src="{{post.post_image.url}}" alt="post image">
             </a>
             {% endif %}
 
             <div class="card-body text-center p-3">
                 <h4 class="card-title font-weight-bold">
-                    <a href="{% url 'post-detail' post.slug %}">{{post.title|title|truncatechars:40}}</a>
+                    <a href="{% url 'portfolio:post-detail' post.slug %}">{{post.title|title|truncatechars:40}}</a>
                 </h4>
                 <p class="card-text">{{post.content|truncatechars:100|safe}}</p>
                 <!-- <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p> -->
                 <div class="row">
                     <div class="col-sm">
-                        <a href="{%url 'portfolio' post.user%}"><img src="{{post.user.profile_picture}}" class="avatar"
+                        <a href="{%url 'portfolio:portfolio' post.user%}"><img src="{{post.user.profile_picture}}" class="avatar"
                                 alt=""><strong class="text-capitalize">{{post.user}}</strong></a>
                     </div>
                     <div class="col-sm">

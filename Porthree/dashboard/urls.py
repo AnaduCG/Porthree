@@ -9,6 +9,8 @@ from .views import (
     create_post,
 )
 
+app_name = "dashboard"
+
 urlpatterns = [
     path("user-details/", user_details_form, name="user-details"),
     path("create-skills/", create_skill, name="create-skills"),

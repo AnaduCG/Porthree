@@ -9,19 +9,19 @@
 <div id="navbar-example2" class="d-sm-inline-block form-inline navbar-search m-lg-auto" style="width: fit-content;">
     <ul class="navbar-nav mr-auto text-capitalize">
         <li class="nav-item">
-            <a class="nav-link font-weight-bold text-dark" href="{%url 'portfolio' user%}">{{user}}</a>
+            <a class="nav-link font-weight-bold text-dark" href="{%url 'portfolio:portfolio' user%}">{{user}}</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link font-weight-bold text-dark" href="{%url 'portfolio' user%}#projects">Projects</a>
+            <a class="nav-link font-weight-bold text-dark" href="{%url 'portfolio:portfolio' user%}#projects">Projects</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link font-weight-bold text-dark" href="{%url 'portfolio' user%}#resume">About</a>
+            <a class="nav-link font-weight-bold text-dark" href="{%url 'portfolio:portfolio' user%}#resume">About</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link font-weight-bold text-dark" href="{%url 'portfolio' user%}#posts">Posts</a>
+            <a class="nav-link font-weight-bold text-dark" href="{%url 'portfolio:portfolio' user%}#posts">Posts</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link font-weight-bold text-dark" href="{%url 'portfolio' user%}#contact">Contact</a>
+            <a class="nav-link font-weight-bold text-dark" href="{%url 'portfolio:portfolio' user%}#contact">Contact</a>
         </li>
         <li class="nav-item">
             <a type="button" class="nav-link font-weight-bold text-dark" data-toggle="modal"
@@ -108,7 +108,7 @@
                             <td><img src="{% static 'MainApp/img/undraw_posting_photo.svg' %}" alt="Post Image"
                                     width="100px" height="100px" class="img-thumbnail mr-2">
                                 {% endif %}
-                            <td><a href="{% url 'edit-post' post.id %}" class="font-weight-bold">
+                            <td><a href="{% url 'dashboard:edit-post' post.id %}" class="font-weight-bold">
                                     {{post.title|truncatechars:100 }}</a></td>
                             <td>10K</td>
                             <td>601</td>
@@ -177,7 +177,7 @@
                     </div>
 
                     <div class="d-flex flex-wrap justify-content-between w-100">
-                        <a href="{% url 'create-post' %}" class="btn btn-warning">Create New Post</a>
+                        <a href="{% url 'dashboard:create-post' %}" class="btn btn-warning">Create New Post</a>
                         <button type="submit" class="btn btn-success">Publish</button>
                     </div>
                 </form>

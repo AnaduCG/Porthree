@@ -41,7 +41,7 @@
 
                 <!-- Nav Item - Dashboard -->
                 <li class="nav-item active">
-                    <a class="nav-link" href="{%url 'user-details' %}">
+                    <a class="nav-link" href="{%url 'dashboard:user-details' %}">
                         <i class="fas fa-fw fa-tachometer-alt"></i>
                         <span>Dashboard</span></a>
                 </li>
@@ -57,12 +57,12 @@
                 <!-- Nav Item - Pages Collapse Menu -->
                 <li class="nav-item">
                     <a class="nav-link active bg-light text-primary border font-weight-bold" id="v-pills-home-tab"
-                        role="tab" aria-controls="v-pills-home" aria-selected="true" href="{% url 'user-details'%}"
+                        role="tab" aria-controls="v-pills-home" aria-selected="true" href="{% url 'dashboard:user-details'%}"
                         style="width: 85%;">
                         <span>My Details</span>
                     </a>
                     <a class="nav-link active bg-light text-primary border font-weight-bold" id="v-pills-home-tab"
-                        role="tab" aria-controls="v-pills-home" aria-selected="true" href="{% url 'create-skills'%}"
+                        role="tab" aria-controls="v-pills-home" aria-selected="true" href="{% url 'dashboard:create-skills'%}"
                         style="width: 85%;">
                         <span>My Skills</span>
                     </a>
@@ -73,12 +73,12 @@
                 <!-- Nav Item - Utilities Collapse Menu -->
                 <li class="nav-item">
                     <a class="nav-link active bg-light text-primary border font-weight-bold" id="v-pills-home-tab"
-                        role="tab" aria-controls="v-pills-home" aria-selected="true" href="{% url 'create-project' %}"
+                        role="tab" aria-controls="v-pills-home" aria-selected="true" href="{% url 'dashboard:create-project' %}"
                         style="width: 85%;">
                         <span>My Projects</span>
                     </a>
                     <a class="nav-link active bg-light text-primary border font-weight-bold" id="v-pills-home-tab"
-                        role="tab" aria-controls="v-pills-home" aria-selected="true" href="{% url 'create-post' %}"
+                        role="tab" aria-controls="v-pills-home" aria-selected="true" href="{% url 'dashboard:create-post' %}"
                         style="width: 85%;">
                         <span>My Posts</span>
                     </a>
@@ -106,7 +106,7 @@
                 <nav class="navbar navbar-expand-lg navbar-light bg-white topbar shadow fixed-top"
                     style=" z-index: 99;">
                     <!-- navbar logo -->
-                    <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{%url 'index' %}">
+                    <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{%url 'MainApp:index' %}">
 
                         <!-- <div class="sidebar-brand-icon rotate-n-15">
                             <i class="fas fa-laugh-wink"></i>
@@ -130,7 +130,7 @@
                                 <ul class="navbar-nav mr-auto">
                                     <li class="nav-item">
                                         <a class="nav-link font-weight-bold text-dark"
-                                            href="{%url 'portfolio' user %}">Home</a>
+                                            href="{%url 'portfolio:portfolio' user %}">Home</a>
                                     </li>
                                     <li class="nav-item">
                                         <a class="nav-link font-weight-bold text-dark" href="#">About</a>
@@ -193,11 +193,11 @@
                                         <!-- Dropdown - User Information -->
                                         <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
                                             aria-labelledby="userDropdown">
-                                            <a class="dropdown-item" href="{% url 'portfolio' user %}">
+                                            <a class="dropdown-item" href="{% url 'portfolio:portfolio' user %}">
                                                 <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
                                                 My Portfolio
                                             </a>
-                                            <a class="dropdown-item" href="{% url 'user-details' %}">
+                                            <a class="dropdown-item" href="{% url 'dashboard:user-details' %}">
                                                 <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
                                                 My details
                                             </a>
@@ -216,7 +216,7 @@
 
                                 </ul>
                                 {%else%}
-                                <a class="btn btn-primary align-self-center" href="{% url 'login' %}">Login</a>
+                                <a class="btn btn-primary align-self-center" href="{% url 'au:login' %}">Login</a>
                                 {%endif%}
                             </div>
                         </div>
@@ -299,7 +299,7 @@
                     session.</div>
                 <div class="modal-footer">
                     <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                    <a class="btn btn-primary" href="{% url 'logout' %}">Logout</a>
+                    <a class="btn btn-primary" href="{% url 'au:logout' %}">Logout</a>
                 </div>
             </div>
         </div>

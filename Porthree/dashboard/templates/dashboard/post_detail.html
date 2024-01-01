@@ -8,7 +8,7 @@
 <div class="d-sm-inline-block form-inline navbar-search m-lg-auto" style="width: fit-content;">
     <ul class="navbar-nav mr-auto">
         <li class="nav-item">
-            <a class="nav-link font-weight-bold text-dark" href="{%url 'portfolio' post.user%}">Home</a>
+            <a class="nav-link font-weight-bold text-dark" href="{%url 'portfolio:portfolio' post.user%}">Home</a>
         </li>
         <li class="nav-item">
             <a class="nav-link font-weight-bold text-dark" href="#">About</a>
@@ -58,8 +58,8 @@
     {% if user.is_authenticated %}
     <!-- Link to create-post endpoint -->
     <div class="d-flex w-50 justify-content-between">
-        <a href="{% url 'create-post' %}" class="btn btn-primary">Create New Post</a>
-        <a href="{% url 'edit-post' post.id %}" class="btn btn-success font-weight-bold">
+        <a href="{% url 'dashboard:create-post' %}" class="btn btn-primary">Create New Post</a>
+        <a href="{% url 'dashboard:edit-post' post.id %}" class="btn btn-success font-weight-bold">
             Edit Post</a>
     </div>
     {% endif %}

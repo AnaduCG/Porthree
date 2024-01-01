@@ -14,7 +14,7 @@ def logout_required(view_func):
     def _wrapped_view(request, *args, **kwargs):
         if request.user.is_authenticated:
             # If the user is logged in, redirect to the dashboard url
-            DASHBOARD_URL = "user-details"
+            DASHBOARD_URL = "dashboard:user-details"
             return redirect(DASHBOARD_URL)
         return view_func(request, *args, **kwargs)
 
@@ -44,7 +44,7 @@ def user_login(request):
         if form.is_valid():
             user = form.get_user()
             login(request, user)
-            return redirect("user-details")  # redirect to user portfolio view
+            return redirect("dashboard:user-details")  # redirect to user portfolio view
     else:
         form = LoginForm()
     return render(request, "authentications/login.html", {"form": form})
@@ -61,4 +61,4 @@ def user_logout(request):
     """
     
     logout(request)
-    return redirect("login")  # Change 'home' to desired redirect URL
+    return redirect("au:login")  # Change 'home' to desired redirect URL
